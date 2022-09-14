@@ -1,0 +1,64 @@
+\name{simico_out}
+\alias{simico_out}
+%- Also NEED an '\alias' for EACH other topic documented here.
+\title{
+simico_out()
+}
+\description{
+Calculate the test score statistic as well as the p-value for both the mutliple outcome test and the multiple burden test, which is computed using davies method.
+}
+\usage{
+simico_out(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d)
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{nullFit}{beta values fitted from NR}
+  \item{xDats}{list of design matrices}
+  \item{lt_all}{n x k matrix of left times}
+  \item{rt_all}{n x k matrix of right times}
+  \item{Itt}{information of theta terms from NR}
+  \item{a1}{first beta distribution shape parameter for weights}
+  \item{a2}{second beta distribution shape parameter for weights}
+  \item{G}{n x q matrix of genetic information}
+  \item{k}{number of outcomes}
+  \item{d}{number of quadrature points}
+}
+\details{
+%%  ~~ If necessary, more details than the description above ~~
+}
+\value{
+%%  Q = gamma_score, pval = pval$Qq, multburdenQ = multburdenQ, multburdenP = p_burden
+  \item{Q}{Multiple outcome test statistic}
+  \item{pval}{Multiple outcome test p-value}
+  \item{multburdenQ}{Multiple burden test statistic}
+  \item{multburdenP}{Multiple burden p-value}
+}
+\references{
+%% ~put references to the literature/web site here ~
+}
+\author{
+%%  ~~who you are~~
+}
+\note{
+%%  ~~further notes~~
+}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\seealso{
+%% ~~objects to See Also as \code{\link{help}}, ~~~
+}
+\examples{
+##---- Should be DIRECTLY executable !! ----
+##-- ==>  Define data, use random,
+##--	or do  help(data=index)  for the standard data sets.
+
+## The function is currently defined as
+function (x)
+{
+  }
+}
+% Add one or more standard keywords, see file 'KEYWORDS' in the
+% R documentation directory.
+\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
+\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

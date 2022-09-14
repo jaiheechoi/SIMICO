@@ -1,0 +1,323 @@
+# run multiICSKAT
+library(devtools)
+install_github('jaiheechoi/multiICSKAT1')
+library(multiICSKAT1)
+library(ICSKAT)
+library(bindata)
+library(fastGHQuad)
+library(dplyr)
+library(tidyr)
+
+
+# aID is just for naming, Snum is for baseline hazard function
+args <- commandArgs(trailingOnly=TRUE)
+aID <- as.numeric(args[1])
+
+# number of outcomes
+k = 3
+
+# effect sizes for each outcomes
+effectSizes <- c(.03, .15, .3)
+
+# number of columns in design matrix
+nocol = 5
+
+
+runs <- 10 # number of runs
+n <- 1500 # number of observations
+p = 2 # number of covariates
+q = 50 # number of SNPs
+d = 100 # number of quadrature points
+rho = 0.1 #correlation coef for generating gMat
+tauSq = 1 # variance of random effects
+alpha = .05 # critical value
+
+# gaussian quadrature values
+ghDat <- gaussHermiteData(d)
+w1 <- ghDat$w
+r1 <- ghDat$x
+
+# initial beta for NR
+init_beta <- c(rep(c(rep(0,3),1,0),k),1)
+
+# combination of indicies of number of outcomes
+combs <- combn(1:k, 2)
+
+# inverse of baseline hazard
+bhFunInv <- function(x) {x}
+
+# observation times
+obsTimes <- 1:4
+
+
+#make placeholder to change the data later
+# *** this is how the functions take the inputs
+dataph <- matrix(NA, nrow= n, ncol = nocol)
+vec1000 <- rep(NA, n)
+dmatph <- list(right_dmat = dataph, left_dmat = dataph)
+xmatph <- list(dmats = dmatph, lt = vec1000, rt = vec1000)
+allph <- matrix(NA, nrow = n, ncol = k)
+threedmat <- list()
+for(i in 1:k){
+  threedmat[[i]] <- xmatph
+}
+samp <- list(xDats = threedmat, ts_all = allph, ob_all = allph)
+
+
+#####################################################
+# other functions that are needed
+# Simulate gmat
+sim_gmat <- function(n,q,rho){
+  ## Construct a binary correlation matrix
+  #cmat <- matrix(c(1,rho,rho,1), ncol=2) 
+  cmat <- toeplitz(c(1, rep(rho, q - 1)))
+  meanparam1 <- runif(q, .01, .05)
+  meanparam2 <- runif(q, .01, .05)
+  x <- rmvbin(n, margprob = meanparam1, bincorr = cmat)  + rmvbin(n, margprob = meanparam2, bincorr = cmat)
+  
+  return(x)
+}
+
+Get_CausalSNPs_bynum<-function(gMat, num, Causal.MAF.Cutoff){
+  #Calculate MAF for the genotypes
+  MAF <- apply(gMat, 2, function(x) mean(x)/2)
+  
+  IDX<-which(MAF < Causal.MAF.Cutoff)
+  if(length(IDX) == 0){
+    msg<-sprintf("No SNPs with MAF < %f",Causal.MAF.Cutoff)
+    stop(msg)
+  }
+  
+  
+  N.causal<-num
+  if(N.causal < 1){
+    N.causal = 1
+  }
+  #print(N.causal)
+  #print(Causal.Ratio)
+  #print(length(IDX))
+  re<-sort(sample(IDX,N.causal))
+  return(re)
+}
+
+ACAT<-function(Pvals,Weights=NULL){
+  #### check if there is NA
+  if (sum(is.na(Pvals))>0){
+    stop("Cannot have NAs in the p-values!")
+  }
+  #### check if Pvals are between 0 and 1
+  if ((sum(Pvals<0)+sum(Pvals>1))>0){
+    stop("P-values must be between 0 and 1!")
+  }
+  #### check if there are pvals that are either exactly 0 or 1.
+  is.zero<-(sum(Pvals==0)>=1)
+  is.one<-(sum(Pvals==1)>=1)
+  if (is.zero && is.one){
+    stop("Cannot have both 0 and 1 p-values!")
+  }
+  if (is.zero){
+    return(0)
+  }
+  if (is.one){
+    warning("There are p-values that are exactly 1!")
+    return(1)
+  }
+  
+  #### Default: equal weights. If not, check the validity of the user supplied weights and standadize them.
+  if (is.null(Weights)){
+    Weights<-rep(1/length(Pvals),length(Pvals))
+  }else if (length(Weights)!=length(Pvals)){
+    stop("The length of weights should be the same as that of the p-values")
+  }else if (sum(Weights<0)>0){
+    stop("All the weights must be positive!")
+  }else{
+    Weights<-Weights/sum(Weights)
+  }
+  
+  
+  #### check if there are very small non-zero p values
+  is.small<-(Pvals<1e-16)
+  if (sum(is.small)==0){
+    cct.stat<-sum(Weights*tan((0.5-Pvals)*pi))
+  }else{
+    cct.stat<-sum((Weights[is.small]/Pvals[is.small])/pi)
+    cct.stat<-cct.stat+sum(Weights[!is.small]*tan((0.5-Pvals[!is.small])*pi))
+  }
+  #### check if the test statistic is very large.
+  if (cct.stat>1e+15){
+    pval<-(1/cct.stat)/pi
+  }else{
+    pval<-1-pcauchy(cct.stat)
+  }
+  return(pval)
+}
+
+########################################################
+
+# Function for running power simulations
+mICSKAT_pwr_byoutcome <- function(runs, n, q, rho, num, Causal.MAF.Cutoff, k){
+  multP <- rep(NA, runs)
+  multQ <- rep(NA, runs)
+  multSig <- rep(NA, runs)
+  singP <- rep(NA, runs)
+  singSig <- rep(NA, runs)
+  burdenP <- rep(NA, runs)
+  burdenSig <- rep(NA, runs)
+  singP_ACAT <- rep(NA, runs)
+  burdenP_ACAT <- rep(NA, runs)
+  singACAT_Sig <- rep(NA, runs)
+  burdenACAT_Sig <- rep(NA, runs)
+  
+  for(i in 1:runs){
+    
+    # fixed effects
+    xMat <- cbind(rnorm(n), rbinom(n=n, size=1, prob=0.5))
+    
+    # genetic effects
+    gMat <- sim_gmat(n, q, rho)
+    
+    # get indices to specific select causal variants
+    idx <- Get_CausalSNPs_bynum(gMat, num, Causal.MAF.Cutoff)
+    
+    # Subset the gMat
+    gMatCausal <- gMat[,idx]
+    
+    # true model has nothing
+    fixedMat <- matrix(data=0, nrow=n, ncol=k)
+    
+    outcomeDat <- gen_mICSKAT_dat(bhFunInv = bhFunInv, obsTimes = obsTimes, windowHalf = 0.1,
+                                  
+                                  n = n, k = k, tauSq = tauSq, gMatCausal, effectSizes = effectSizes)
+    
+    
+    # make place holders
+    
+    # put the data together
+    
+    leftArray <- array(data=NA, dim=c(n, p + 3, k))
+    
+    rightArray <- array(data=NA, dim=c(n, p + 3, k))
+    
+    
+    for (pheno_it in 1:k) {
+      
+      tempDmats <- make_IC_dmat(xMat = xMat, lt = outcomeDat$leftTimesMat[, pheno_it],
+                                
+                                rt = outcomeDat$rightTimesMat[, pheno_it], obs_ind = outcomeDat$obsInd[, pheno_it],
+                                
+                                tpos_ind = outcomeDat$tposInd[, pheno_it], nKnots=1)
+      
+      leftArray[, , pheno_it] <- tempDmats$left_dmat
+      
+      rightArray[, , pheno_it] <- tempDmats$right_dmat
+      
+    }
+    
+    for(pheno in 1:k){
+      samp$xDats[[pheno]]$dmats$right_dmat <- rightArray[,,pheno]
+      samp$xDats[[pheno]]$dmats$left_dmat <- leftArray[,,pheno]
+      samp$xDats[[pheno]]$lt <- outcomeDat$leftTimesMat[,pheno]
+      samp$xDats[[pheno]]$rt <- outcomeDat$rightTimesMat[,pheno]
+    }
+    
+    samp$ob_all <- outcomeDat$obsInd
+    samp$ts_all <- outcomeDat$tposInd
+    
+    # set initial values
+    init_beta <-c (rep(c(0, 0, 0, 1, 0), k), 1)
+    
+    # do NR
+    fit <- fit_null_general(init_beta, 10^-5, xDats = samp$xDats, outcomeDat$leftTimesMat, outcomeDat$rightTimesMat, k, d)
+    
+    # get multiICSKAT pvalue
+    out <- multiICSKAT_p_general(fit$temp_beta, xDats = samp$xDats, lt_all = outcomeDat$leftTimesMat, 
+                                 rt_all = outcomeDat$rightTimesMat, Itt = fit$jmat, a1 = 1, a2 = 1, G = gMat, k, d)
+    
+    # make vectors to hold the pvalues for the single outcome test for each outcome
+    single_pvals <- rep(NA, k)
+    burden_pvals <- rep(NA, k)
+    adjusted_pvals <- rep(NA,k)
+    
+    # loop through the outcomes and run each single test
+    for(m in 1:k)
+      
+    {
+      
+      dmats <- samp$xDats[[m]]$dmats
+      
+      lt <- samp$xDats[[m]]$lt
+      
+      rt <- samp$xDats[[m]]$rt
+      
+      obs_ind <- samp$ob_all[,m]
+      
+      tpos_ind <- samp$ts_all[,m]
+      
+      
+      nullFit <- ICSKAT_fit_null(init_beta = rep(0, nocol), left_dmat = dmats$left_dmat, right_dmat=dmats$right_dmat,
+                                 
+                                 obs_ind = obs_ind, tpos_ind = tpos_ind, lt = lt, rt = rt)
+      
+      # perform the ICSKAT and Burden tests
+      
+      icskatOut <- ICskat(left_dmat = dmats$left_dmat, right_dmat=dmats$right_dmat, lt = lt, rt = rt,
+                          
+                          obs_ind = obs_ind, tpos_ind = tpos_ind, gMat = gMat, null_beta = as.numeric(nullFit$beta_fit), Itt = nullFit$Itt)
+      
+      single_pvals[m] <- icskatOut$p_SKAT
+      burden_pvals[m] <- icskatOut$p_burden
+      
+      
+    }
+    
+    # save the smallest p-value
+    singP[i] <- min(single_pvals)
+    
+    # bonferroni correction
+    singSig[i] <-as.numeric(min(single_pvals) < alpha/k)
+    
+    # save multiICSKAT test statistics + p-value
+    multQ[i] <- out$Q
+    multP[i] <- out$pval
+    multSig[i] <- as.numeric(out$pval < alpha)
+    
+    # save the small burden test p-value
+    burdenP[i] <- min(burden_pvals)
+    
+    # bonferroni correction
+    burdenSig[i] <- as.numeric(min(burden_pvals) < alpha/k)
+    
+    # correct p-value using ACAT
+    singP_ACAT[i] <- ACAT(single_pvals)
+    singACAT_Sig[i] <- as.numeric(singP_ACAT[i] < alpha)
+    burdenP_ACAT[i] <- ACAT(burden_pvals)
+    burdenACAT_Sig[i] <- as.numeric(burdenP_ACAT[i] < alpha)
+  }
+  
+  sim_results <- data.frame(cbind(multQ, multP, multSig, singP, singSig, burdenP, burdenSig, singP_ACAT, singACAT_Sig, burdenP_ACAT, burdenACAT_Sig))
+  
+  return(list(sim_results =sim_results, outcomes = k))
+  
+}
+
+# loop through the number of causal variants
+
+
+run <- NA
+mat <- NA
+
+# number of causal variants
+noCV  <- 4
+
+# run the power comparison function
+temp <-mICSKAT_pwr_byoutcome(runs, n, q, rho, noCV, .05, k)
+temp_withK <- cbind(temp$sim_results, temp$outcomes)
+mat <- rbind(mat, temp_withK)
+
+mat <- mat[-1,]
+colnames(mat)[12] <- "K"
+
+
+setwd("/rsrch3/home/biostatistics/jchoi8/multiICSKAT/simulations/diffOutcomes")
+
+saveRDS(mat,paste(paste("outcomethree",aID, sep = ""), ".RDS", sep = ""))
