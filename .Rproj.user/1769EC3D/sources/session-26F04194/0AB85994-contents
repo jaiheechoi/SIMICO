@@ -8,9 +8,12 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-Tutorial for SIMICO package with example.
-```{r setup, include = FALSE}
 
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
 ```
 
 Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
@@ -52,11 +55,84 @@ Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr*
 
 You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
 
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+```{r generate, echo=FALSE}
+# Number of observations
+n <- 10^4
+
+# Number of SNPs in sample
+q <- 50
+
+# number of outcomes
+k = 2
+
+# effect sizes for each outcomes
+effectSizes <- c(.03, .15)
+
+# number of columns in design matrix
+nocol = 5
+
+
+# fixed effects
+xMat <- cbind(rnorm(n), rbinom(n=n, size=1, prob=0.5))
+    
+# genetic effects
+gMat <- sim_gmat(n, q, rho)
+
+# the baseline cumulative hazard function
+bhFunInv <- function(x) {x}
+
+# observation times
+obsTimes <- 1:4
+    
+# true model has nothing
+fixedMat <- matrix(data=0, nrow=n, ncol=k)
+    
+# generate the data
+outcomeDat <- gen_mICSKAT_dat(bhFunInv = bhFunInv, obsTimes = obsTimes,
+                              windowHalf = 0.1, n = n, k = k, tauSq = tauSq, 
+                              gMatCausal, effectSizes = effectSizes)
+    
+    
+    # make place holders
+    
+    # put the data together
+    
+    leftArray <- array(data=NA, dim=c(n, p + 3, k))
+    
+    rightArray <- array(data=NA, dim=c(n, p + 3, k))
+    
+    
+    for (pheno_it in 1:k) {
+      
+      tempDmats <- make_IC_dmat(xMat = xMat, lt = outcomeDat$leftTimesMat[, pheno_it],
+                                
+                                rt = outcomeDat$rightTimesMat[, pheno_it], obs_ind = outcomeDat$obsInd[, pheno_it],
+                                
+                                tpos_ind = outcomeDat$tposInd[, pheno_it], nKnots=1)
+      
+      leftArray[, , pheno_it] <- tempDmats$left_dmat
+      
+      rightArray[, , pheno_it] <- tempDmats$right_dmat
+      
+    }
+    
+    for(pheno in 1:k){
+      samp$xDats[[pheno]]$dmats$right_dmat <- rightArray[,,pheno]
+      samp$xDats[[pheno]]$dmats$left_dmat <- leftArray[,,pheno]
+      samp$xDats[[pheno]]$lt <- outcomeDat$leftTimesMat[,pheno]
+      samp$xDats[[pheno]]$rt <- outcomeDat$rightTimesMat[,pheno]
+    }
+    
+    samp$ob_all <- outcomeDat$obsInd
+    samp$ts_all <- outcomeDat$tposInd
+    
+    # set initial values
+    init_beta <-c (rep(c(0, 0, 0, 1, 0), k), 1)
+    
+    # do NR
+    fit <- fit_null_general(init_beta, 10^-5, xDats = samp$xDats, outcomeDat$leftTimesMat, outcomeDat$rightTimesMat, k, d)
+    
+    # get multiICSKAT pvalue
+    out <- multiICSKAT_p_general(fit$temp_beta, xDats = samp$xDats, lt_all = outcomeDat$leftTimesMat, 
+                                 rt_all = outcomeDat$rightTimesMat, Itt = fit$jmat, a1 = 1, a2 = 1, G = gMat, k, d)
 ```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))

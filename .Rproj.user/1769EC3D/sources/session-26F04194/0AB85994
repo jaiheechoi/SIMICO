@@ -3,7 +3,7 @@
     "path": "~/SIMICO/Vignette.Rmd",
     "project_path": "Vignette.Rmd",
     "type": "r_markdown",
-    "hash": "1267265355",
+    "hash": "4037833560",
     "contents": "",
     "dirty": false,
     "created": 1663187040955.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "9,3",
-        "scrollLine": "0"
+        "cursorPosition": "26,57",
+        "scrollLine": "24"
     },
     "folds": "",
-    "lastKnownWriteTime": 1663187082,
+    "lastKnownWriteTime": 1663221380,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1663187082727,
+    "last_content_update": 1663221380370,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -248,6 +248,18 @@ get_A <- function(store, weights, d, n){
 
 }
 
+# Simulate gmat
+sim_gmat <- function(n,q,rho){
+  ## Construct a binary correlation matrix
+  #cmat <- matrix(c(1,rho,rho,1), ncol=2)
+  cmat <- toeplitz(c(1, rep(rho, q - 1)))
+  meanparam1 <- runif(q, .01, .05)
+  meanparam2 <- runif(q, .01, .05)
+  x <- rmvbin(n, margprob = meanparam1, bincorr = cmat)  + rmvbin(n, margprob = meanparam2, bincorr = cmat)
+
+  return(x)
+}
+
 
 ################################################# F3 NR TERMS
 fd_term <- function(l, temp_beta, phen,d, apply_diffs, A_i, no_l_all,HL_array, HR_array){
