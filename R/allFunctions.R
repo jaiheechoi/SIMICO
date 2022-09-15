@@ -255,7 +255,7 @@ sim_gmat <- function(n,q,rho){
   cmat <- toeplitz(c(1, rep(rho, q - 1)))
   meanparam1 <- runif(q, .01, .05)
   meanparam2 <- runif(q, .01, .05)
-  x <- rmvbin(n, margprob = meanparam1, bincorr = cmat)  + rmvbin(n, margprob = meanparam2, bincorr = cmat)
+  x <- bindata::rmvbin(n, margprob = meanparam1, bincorr = cmat)  + bindata::rmvbin(n, margprob = meanparam2, bincorr = cmat)
 
   return(x)
 }
@@ -1631,7 +1631,23 @@ multiICSKAT_p_general <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G
 #' @param effectSizes vector of genetic effects
 #' @export
 #' gen_mICSKAT_dat()
-gen_mICSKAT_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.5, n, k, tauSq, gMatCausal, effectSizes) {
+gen_mICSKAT_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.5, n, p, k, tauSq, gMatCausal, effectSizes) {
+
+  #get number of columns
+  nocol <- p + 3
+
+  #make placeholder to change the data later
+  # *** this is how the functions take the inputs
+  dataph <- matrix(NA, nrow= n, ncol = nocol)
+  vecN <- rep(NA, n)
+  dmatph <- list(right_dmat = dataph, left_dmat = dataph)
+  xmatph <- list(dmats = dmatph, lt = vecN, rt = vecN)
+  allph <- matrix(NA, nrow = n, ncol = k)
+  threedmat <- list()
+  for(i in 1:k){
+    threedmat[[i]] <- xmatph
+  }
+  xAll <- list(xDats = threedmat, ts_all = allph, ob_all = allph)
 
   # true model has nothing
   fixedMat <- matrix(data=0, nrow=n, ncol=k)
@@ -1707,9 +1723,41 @@ gen_mICSKAT_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.5, n, k, ta
     tposInd[, pheno_it] <- ifelse(leftTimesMat[, pheno_it] == 0, 0, 1)
   }
 
+
+  # put the data together
+
+  leftArray <- array(data=NA, dim=c(n, p + 3, k))
+
+  rightArray <- array(data=NA, dim=c(n, p + 3, k))
+
+
+  for (pheno_it in 1:k) {
+
+    tempDmats <- ICSKAT::make_IC_dmat(xMat = xMat, lt = outcomeDat$leftTimesMat[, pheno_it],
+
+                                      rt = outcomeDat$rightTimesMat[, pheno_it], obs_ind = outcomeDat$obsInd[, pheno_it],
+
+                                      tpos_ind = outcomeDat$tposInd[, pheno_it], nKnots=1)
+
+    leftArray[, , pheno_it] <- tempDmats$left_dmat
+
+    rightArray[, , pheno_it] <- tempDmats$right_dmat
+
+  }
+
+  for(pheno in 1:k){
+    xAll$xDats[[pheno]]$dmats$right_dmat <- rightArray[,,pheno]
+    xAll$xDats[[pheno]]$dmats$left_dmat <- leftArray[,,pheno]
+    xAll$xDats[[pheno]]$lt <- outcomeDat$leftTimesMat[,pheno]
+    xAll$xDats[[pheno]]$rt <- outcomeDat$rightTimesMat[,pheno]
+  }
+
+  xAll$ob_all <- outcomeDat$obsInd
+  xAll$ts_all <- outcomeDat$tposInd
+
   # return
   return(list(exactTimesMat = exactTimesMat, leftTimesMat = leftTimesMat,
-              rightTimesMat = rightTimesMat, obsInd = obsInd, tposInd = tposInd))
+              rightTimesMat = rightTimesMat, obsInd = obsInd, tposInd = tposInd, xAll = xAll))
 
 }
 
