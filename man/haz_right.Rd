@@ -1,14 +1,14 @@
-\name{haz_left}
-\alias{haz_left}
+\name{haz_right}
+\alias{haz_right}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-H_{ik}(L_{ik})
+%%  ~~function to do ... ~~
 }
 \description{
-Calculates the hazard function of the left time interval for outcome k
+Calculates the hazard function of the right time interval for outcome k
 }
 \usage{
-haz_left(l, d, temp_beta, phen, r1, k)
+haz_right(l, d, temp_beta, phen, r1, k)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,7 +23,7 @@ haz_left(l, d, temp_beta, phen, r1, k)
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-The output is a vector of the hazard values of the left times
+The output is a vector of the hazard values of the right times
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -46,8 +46,19 @@ The output is a vector of the hazard values of the left times
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (x)
+function (l, d, temp_beta, phen, r1, k)
 {
+    covcol <- ncol(phen$dmats$right_dmat)
+    sub_beta <- temp_beta[((l - 1) * covcol + 1):(l * covcol)]
+    sigmasq <- temp_beta[k * covcol + 1]
+    lt <- phen$lt
+    rt <- phen$rt
+    tpos_ind <- as.numeric(lt > 0)
+    obs_ind <- as.numeric(rt != Inf)
+    right_dmat <- phen$dmats$right_dmat
+    hr1 <- as.numeric(exp(right_dmat \%*\% t(matrix(sub_beta, nrow = 1)) +
+        sqrt(2 * sigmasq) * r1[d]))
+    return(hr1)
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

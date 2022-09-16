@@ -1,14 +1,14 @@
-\name{haz_left}
-\alias{haz_left}
+\name{surv_diff}
+\alias{surv_diff}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-H_{ik}(L_{ik})
+S_{ik}(L_{ik}) - S_{ik}(R_{ik})
 }
 \description{
-Calculates the hazard function of the left time interval for outcome k
+Calculates the difference between the survival functions of the left and right time intervals for outcome k
 }
 \usage{
-haz_left(l, d, temp_beta, phen, r1, k)
+surv_diff(l, d, temp_beta, phen, r1, k)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,7 +23,7 @@ haz_left(l, d, temp_beta, phen, r1, k)
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-The output is a vector of the hazard values of the left times
+The output is a vector of the difference of the survival values of the left times and right times
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -46,8 +46,10 @@ The output is a vector of the hazard values of the left times
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (x)
+function (l, d, temp_beta, phen, r1, k)
 {
+    (surv_left(l, d, temp_beta, phen, r1, k) - surv_right(l,
+        d, temp_beta, phen, r1, k))
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

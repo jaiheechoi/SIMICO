@@ -2,10 +2,10 @@
 \alias{surv_left}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+S_{ik}(L_{ik})
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Calculates the survival function of the left time interval for outcome k
 }
 \usage{
 surv_left(l, d, temp_beta, phen, r1, k)
