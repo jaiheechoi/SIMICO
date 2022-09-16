@@ -230,24 +230,6 @@ get_A <- function(store, weights, d, n){
 
 }
 
-get_A <- function(store, weights, d, n){
-
-  #number of outcomes
-  k <- ncol(store[,,d])
-
-  # multiply the survival differences across number of outcomes
-  mult_across_k <- array(apply(store, c(1,3), prod), dim = c(n,1,d))
-
-  # add quadrature weights
-  add_weights <- t(matrix(mult_across_k, nrow = n)) * weights
-
-  # sum terms and divide by sqrt(pi)
-  A_i <- colSums(add_weights)/sqrt(pi)
-
-  return(A_i)
-
-}
-
 # Simulate gmat
 sim_gmat <- function(n,q,rho){
   ## Construct a binary correlation matrix
@@ -1263,8 +1245,8 @@ gammasigma <- function(l, HL_array, HR_array, tpos_all, obs_all, apply_diffs, te
 #' @param k number of outcomes
 #' @param d number of quadrature points
 #' @export
-#' fit_null_general()
-fit_null_general <- function(init_beta, epsilon, xDats, lt_all, rt_all, k, d) {
+#' simico_fit_null()
+simico_fit_null <- function(init_beta, epsilon, xDats, lt_all, rt_all, k, d) {
 
   # number of observations
   n = nrow(xDats[[1]]$dmats$right_dmat)
@@ -1607,14 +1589,19 @@ simico_out <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d){
   # compute the score statistic
   gamma_score <- t(U_g) %*% U_g
 
+  burden_score <- (sum(U_g))^2
+
   # get the eigen values
   lams <- eigen(sigmat)$values
 
   # compute the p-value using davies method
   pval <- CompQuadForm::davies(q=gamma_score, lambda=lams)
 
+  B_burden= burden_score / sum(sigmat);
+  p_burden= 1 - stats::pchisq(B_burden, df = 1)
 
-  return(list(Q = gamma_score, pval = pval$Qq))
+
+  return(list(multQ = gamma_score, multP = pval$Qq, burdQ = burden_score, burdP = p_burden))
 }
 
 
@@ -1631,7 +1618,7 @@ simico_out <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d){
 #' @param effectSizes vector of genetic effects
 #' @export
 #' gen_mICSKAT_dat()
-gen_mICSKAT_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.5, n, p, k, tauSq, gMatCausal, effectSizes) {
+simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.5, n, p, k, tauSq, gMatCausal, effectSizes) {
 
   #get number of columns
   nocol <- p + 3

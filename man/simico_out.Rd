@@ -29,11 +29,11 @@ simico_out(x)
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+%%  multQ = gamma_score, multP = pval$Qq, burdQ = burden_score, burdP = p_burden
+  \item{multQ}{Score statistic for multiple outcome test.}
+  \item{multP}{P-value for multiple outcome test.}
+  \item{burdQ}{Score statistic for multiple burden test.}
+  \item{burdP}{P-value for multiple burden test.}
 }
 \references{
 %% ~put references to the literature/web site here ~
