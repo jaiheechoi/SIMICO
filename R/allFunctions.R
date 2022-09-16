@@ -1448,8 +1448,8 @@ fit_null_general <- function(init_beta, epsilon, xDats, lt_all, rt_all, k, d) {
 #' @param k number of outcomes
 #' @param d number of quadrature points
 #' @export
-#' multiICSKAT_p_general()
-multiICSKAT_p_general <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d){
+#' simico_out()
+simico_out <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d){
 
   # quadrature weights and roots
   ghDat <- fastGHQuad::gaussHermiteData(d)

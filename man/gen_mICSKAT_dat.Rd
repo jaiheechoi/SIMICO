@@ -12,24 +12,27 @@ gen_mICSKAT_dat(bhFunInv, obsTimes, windowHalf = 0.5, n, k, tauSq, gMatCausal, e
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item {bhFunInv}{the inverse of the baseline hazard function}
-  \item{obsTimes}{Vector of the intended observation times}
-  \item{windowHalf}{The amount of time before or after the intended obsTimes that a visit might take place}
-  \item{n}{number of observations}
-  \item{k}{number of outcomes}
-  \item{tausq}{variance of subject specific random effect}
-  \item{gMatCausal}{matrix of subsetted genetic information for only a select causal SNPs}
-  \item{effectSizes}{vector of genetic effects}
+  \item {bhFunInv}{The inverse of the baseline hazard function.}
+  \item{obsTimes}{Vector of the intended observation times.}
+  \item{windowHalf}{The amount of time before or after the intended obsTimes that a visit might take place.}
+  \item{n}{Number of observations.}
+  \item{k}{Number of outcomes.}
+  \item{tausq}{Variance of subject specific random effect.}
+  \item{gMatCausal}{Matrix of subsetted genetic information for only a select causal SNPs.}
+  \item{effectSizes}{Vector of genetic effects.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+% exactTimesMat = exactTimesMat, leftTimesMat = leftTimesMat,
+%              rightTimesMat = rightTimesMat, obsInd = obsInd, tposInd = tposInd, xAll = xAll
+  \item{exactTimesMat}{Matrix containing the generated exact times.}
+  \item{leftTimesMat}{Matrix containing the generated left interval times.}
+  \item{rightTimesMat}{Matrix containing the generated right interval times.}
+  \item{obsInd}{n x k matrix containing a indictor for whether that time is right-censored or not.}
+  \item{tposInd}{n x k matrix containing a indictor for whether that time is left-censored or not.}
+  \item{xAll}{List containing all the design matrices, left and right times, and the censoring terms.}
 }
 \references{
 %% ~put references to the literature/web site here ~

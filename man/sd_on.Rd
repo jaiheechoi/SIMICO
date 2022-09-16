@@ -2,7 +2,7 @@
 \alias{sd_on}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-d^2/d{sigma^2}^2
+d^2/d{\sigma^2}^2
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -15,7 +15,7 @@ sd_on(l, k, temp_beta, phen, d, apply_diffs, A_i, no_l_all, HL_array, HR_array)
   \item{l}{Index of first outcome of interest.}
   \item{k}{Total number of outcomes.}
   \item{temp_beta}{vector of fitted coefficients.}
-  \item{phen}{List containing all the left and right design matrices.}
+  \item{phen}{List containing the left and right design matrices and interval times for outcome l.}
   \item{d}{Total number of quadrature nodes.}
   \item{apply_diffs}{Matrix containing the differences between survival functions of the left and right time intervals.}
   \item{A_i}{Product of apply_diffs across all outcomes K summed over all quadrature nodes D.}
