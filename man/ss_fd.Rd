@@ -2,7 +2,7 @@
 \alias{ss_fd}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-d^2/d_{theta_l}d{sigma^2}
+d/d\sigma^2
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~

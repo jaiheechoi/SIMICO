@@ -2,7 +2,7 @@
 \alias{haz_right}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+H_{ik}(R_{ik})
 }
 \description{
 Calculates the hazard function of the right time interval for outcome k
