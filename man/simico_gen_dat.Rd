@@ -9,14 +9,16 @@ Generate multiple interval-censored data under proportional hazards model.
 
 }
 \usage{
-simico_gen_dat(bhFunInv, obsTimes, windowHalf = 0.5, n, k, tauSq, gMatCausal, effectSizes)
+simico_gen_dat(bhFunInv, obsTimes, windowHalf = 0.1, n, k, tauSq, gMatCausal, effectSizes)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
+% bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, effectSizes
   \item {bhFunInv}{the inverse of the baseline hazard function}
   \item{obsTimes}{Vector of the intended observation times}
   \item{windowHalf}{The amount of time before or after the intended obsTimes that a visit might take place}
   \item{n}{number of observations}
+  \item{p}{number of covariates}
   \item{k}{number of outcomes}
   \item{tausq}{variance of subject specific random effect}
   \item{gMatCausal}{matrix of subsetted genetic information for only a select causal SNPs}
