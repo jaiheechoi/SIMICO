@@ -2,7 +2,7 @@
 \alias{fd_term}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-first deriv
+d/d\theta_l
 }
 \description{
 Calculate the first derivative of the theta terms for outcome l
