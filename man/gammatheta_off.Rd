@@ -13,21 +13,21 @@ gammatheta_off(x)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
  % l,m, HL_array, HR_array, xAll, apply_diffs, temp_beta, A_i, no_l_all, no_two_all, gMat, a1, a2, k, d
-   \item{l}{Index of first outcome of interest}
-   \item{m}{Index of second outcome of interest}
-  \item{HL_array}{n x K matrix containing all the hazard values for the left times}
-  \item{HR_array}{n x K matrix containing all the hazard values for the right times}
-  \item{xAll}{List of design matrices and censoring terms}
+   \item{l}{Index of first outcome of interest.}
+   \item{m}{Index of second outcome of interest.}
+  \item{HL_array}{n x K matrix containing all the hazard values for the left times.}
+  \item{HR_array}{n x K matrix containing all the hazard values for the right times.}
+  \item{xAll}{List of design matrices and censoring terms.}
   \item{apply_diffs}{Matrix containing the differences between survival functions of the left and right time intervals.}
-  \item{temp_beta}{vector of fitted coefficients}
-  \item{A_i}{Product of apply_diffs across all outcomes K summed over all quadrature nodes D}
-  \item{no_l_all}{n x (K - 1) matrix containing the product of apply_diffs across all outcomes K excluding the current outcome l}
-  \item{no_two_all}{n x (K - 2) matrix containing the product of apply_diffs across all outcomes K excluding the outcomes l and m}
-  \item{gMat}{n x q matrix of genetic information}
-  \item{a1}{First shape parameter of beta parameter}
-  \item{a2}{Second shape parameter of beta parameter}
-  \item{k} {Total number of outcomes}
-  \item{d}{Number of quadrature nodes}
+  \item{temp_beta}{vector of fitted coefficients.}
+  \item{A_i}{Product of apply_diffs across all outcomes K summed over all quadrature nodes D.}
+  \item{no_l_all}{n x (K - 1) matrix containing the product of apply_diffs across all outcomes K excluding the current outcome l.}
+  \item{no_two_all}{n x (K - 2) matrix containing the product of apply_diffs across all outcomes K excluding the outcomes l and m.}
+  \item{gMat}{n x q matrix of genetic information.}
+  \item{a1}{First shape parameter of beta parameter.}
+  \item{a2}{Second shape parameter of beta parameter.}
+  \item{k} {Total number of outcomes.}
+  \item{d}{Number of quadrature nodes.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -50,16 +50,7 @@ The output is a matrix containing the component of the information matrix of the
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
-}
+\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

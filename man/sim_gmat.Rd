@@ -39,7 +39,10 @@ The result of a n x q genetic matrix of q SNPs.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-gMat <- sim_gmat(1500, 50, 0.1)
+n = 1500
+q = 50
+rho = 0.1
+gMat <- sim_gmat(n, q, rho)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

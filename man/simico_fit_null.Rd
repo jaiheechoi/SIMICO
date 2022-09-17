@@ -23,11 +23,11 @@ simico_fit_null(init_beta, epsilon, xDats, lt_all, rt_all, k, d)
 }
 \value{
 %%  temp_beta = temp_beta, iter = iter, diff = diff, jmat = jmat, grad = grad
- \item{temp_beta} {vector of fitted coefficients}
- \item{iter} {number of iternations needed for the Newton Raphson to converge}
+ \item{temp_beta}{vector of fitted coefficients}
+ \item{iter}{number of iternations needed for the Newton Raphson to converge}
  \item{diff}{Difference between the current values of temp_beta and the previous iteration of temp_beta}
  \item{jmat}{Information matrix of the theta parameters}
- \item{grad} {Vector of the first derivaive of the theta parameters}
+ \item{grad}{Vector of the first derivaive of the theta parameters}
 %% ...
 }
 \references{
@@ -46,14 +46,7 @@ simico_fit_null(init_beta, epsilon, xDats, lt_all, rt_all, k, d)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
+ADD LATER
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

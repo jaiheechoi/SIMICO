@@ -37,30 +37,9 @@ Originally from the ICSKAT package.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (obsTimes, eventTime)
-{
-    orderedTimes <- sort(obsTimes)
-    minIdx <- which(orderedTimes < eventTime)
-    if (length(minIdx) == 0) {
-        minTime <- 0
-    }
-    else {
-        minTime <- orderedTimes[max(minIdx)]
-    }
-    maxIdx <- which(orderedTimes >= eventTime)
-    if (length(maxIdx) == 0) {
-        maxTime <- Inf
-    }
-    else {
-        maxTime <- orderedTimes[min(maxIdx)]
-    }
-    return(c(minTime, maxTime))
-  }
+obsTimes <- 1:10
+eventTime <- 2.5
+createInt(obsTimes, eventTime)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

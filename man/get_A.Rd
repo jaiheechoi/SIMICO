@@ -13,10 +13,10 @@ get_A(x)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 % store, weights, d, n
-  \item{store}{Matrix of difference of survival values of the left and right time intervals}
-  \item{weights}{Gaussian quadrature weights}
-  \item{d}{Total number of Gaussian quadrature nodes}
-  \item{n}{Total number of observations}
+  \item{store}{Matrix of difference of survival values of the left and right time intervals.}
+  \item{weights}{Gaussian quadrature weights.}
+  \item{d}{Total number of Gaussian quadrature nodes.}
+  \item{n}{Total number of observations.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -39,16 +39,7 @@ The output is a vector used to compute the derivative terms
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
-}
+\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

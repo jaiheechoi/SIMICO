@@ -48,71 +48,7 @@ The output is a matrix containing the component of the information matrix of the
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (l, m, phen_l, phen_m, temp_beta, d, apply_diffs, A_i,
-    HL_array, HR_array, no_l_all, no_two_all, tpos_all, obs_all,
-    k)
-{
-    ghDat <- fastGHQuad::gaussHermiteData(d)
-    w1 <- ghDat$w
-    r1 <- ghDat$x
-    hl_d <- HL_array[, , l]
-    hr_d <- HR_array[, , l]
-    ld_l <- phen_l$dmats$left_dmat
-    rd_l <- phen_l$dmats$right_dmat
-    ld_m <- phen_m$dmats$left_dmat
-    rd_m <- phen_m$dmats$right_dmat
-    U1 <- sweep((exp(-HL_array) * -HL_array), c(1, 3), ifelse(tpos_all ==
-        0, 0, 1), FUN = "*")
-    U2 <- sweep((exp(-HR_array) * -HR_array), c(1, 3), ifelse(obs_all ==
-        0, 0, 1), FUN = "*")
-    U2[is.na(U2)] <- 0
-    surv_no_l <- no_l_all
-    if (k == 2) {
-        sg_sd <- function(d, l, m) {
-            w1[d] * (t(ld_l/A_i * U1[, d, l] - rd_l/A_i * U2[,
-                d, l]) \%*\% (ld_m * U1[, d, m] - rd_m * U2[, d,
-                m]))
-        }
-        term1 <- apply(simplify2array(lapply(1:d, sg_sd, l = l,
-            m = m)), c(1, 2), sum)/sqrt(pi)
-    }
-    else {
-        combs <- combn(1:k, 2)
-        min_k <- min(l, m)
-        max_k <- max(l, m)
-        no_l_m <- no_two_all[, , which(combs[1, ] == min_k &
-            combs[2, ] == max_k)]
-        sg_sd <- function(d, l, m) {
-            w1[d] * (t(ld_l * (no_l_m[, d]/A_i * U1[, d, l]) -
-                rd_l * (no_l_m[, d]/A_i * U2[, d, l])) \%*\% (ld_m *
-                U1[, d, m] - rd_m * U2[, d, m]))
-        }
-        term1 <- apply(simplify2array(lapply(1:d, sg_sd, l = l,
-            m = m)), c(1, 2), sum)/sqrt(pi)
-    }
-    fd_term_l <- function(d, l) {
-        w1[d] * (ld_l * U1[, d, l] - rd_l * U2[, d, l]) * (no_l_all[,
-            d, l]/A_i)
-    }
-    fd_term_m <- function(d, m) {
-        w1[d] * (ld_m * U1[, d, m] - rd_m * U2[, d, m]) * (no_l_all[,
-            d, m]/A_i)
-    }
-    term2_a <- apply(simplify2array(lapply(1:d, fd_term_l, l = l)),
-        c(1, 2), sum)/sqrt(pi)
-    term2_b <- apply(simplify2array(lapply(1:d, fd_term_m, m = m)),
-        c(1, 2), sum)/sqrt(pi)
-    term2 <- (t(term2_a) \%*\% term2_b)
-    sd_off <- term1 - term2
-    return(sd_off)
-  }
-}
+\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

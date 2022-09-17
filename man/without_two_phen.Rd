@@ -40,19 +40,7 @@ A n x (k-2) matrix containing the product of all the differences of left and rig
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (l, m, k, store, n, d)
-{
-    idx <- (1:k)[-c(l, m)]
-    sub <- array(store[, idx, ], dim = c(n, length(idx), d))
-    sub_prod <- apply(sub, c(1, 3), prod)
-  }
-}
+\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

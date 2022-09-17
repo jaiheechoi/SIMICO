@@ -40,29 +40,7 @@ The output is a vector of the survival values of the left times
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (l, d, temp_beta, phen, r1, k)
-{
-    covcol <- ncol(phen$dmats$right_dmat)
-    sub_beta <- temp_beta[((l - 1) * covcol + 1):(l * covcol)]
-    sigmasq <- temp_beta[k * covcol + 1]
-    lt <- phen$lt
-    rt <- phen$rt
-    tpos_ind <- as.numeric(lt > 0)
-    obs_ind <- as.numeric(rt != Inf)
-    right_dmat <- phen$dmats$right_dmat
-    hr1 <- as.numeric(exp(right_dmat \%*\% t(matrix(sub_beta, nrow = 1)) +
-        sqrt(2 * sigmasq) * r1[d]))
-    sr1 <- ifelse(obs_ind == 0, 0, exp(-hr1))
-    sr1[!is.finite(sr1)] <- 0
-    return(sr1)
-  }
-}
+\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
