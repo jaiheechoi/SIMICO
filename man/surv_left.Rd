@@ -5,7 +5,7 @@
 S_{ik}(L_{ik})
 }
 \description{
-Calculates the survival function of the left time interval for outcome k
+Calculates the survival function of the left time interval for outcome k for quadrature node d.
 }
 \usage{
 surv_left(l, d, temp_beta, phen, r1, k)
@@ -40,7 +40,8 @@ The output is a vector of the survival values of the left times
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{}
+\examples{
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

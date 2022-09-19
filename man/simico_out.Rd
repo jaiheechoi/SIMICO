@@ -8,7 +8,7 @@ Get P-Values
 Calculate test statistic and p-values for multiple outcome test and multiple burden test.
 }
 \usage{
-simico_out(x)
+simico_out(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -51,7 +51,58 @@ simico_out(x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-ADD LATER
+# Set three outcomes
+k = 3
+
+# Set number of observations
+n = 1500
+
+# Set number of covariates
+p = 2
+
+# Set number of SNPs
+q = 50
+
+# Set number of quadrature nodes
+d = 100
+
+# Variance of subject-specific random effect
+tausq = 1
+
+# Define the effect sizes
+effectSizes <- c(.03, .15, .3)
+
+# the baseline cumulative hazard function
+bhFunInv <- function(x) {x}
+
+set.seed(1)
+# Fixed effects
+xMat <- cbind(rnorm(n), rbinom(n=n, size=1, prob=0.5))
+
+# Genetic effects
+gMat <- sim_gmat(n, q, rho)
+
+# True model has nothing
+fixedMat <- matrix(data=0, nrow=n, ncol=k)
+
+# Generate the multiple outcomes
+exampleDat <- newgen(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMat, effectSizes)
+
+# Set the initial estimate values
+init_beta <-c (rep(c(0, 0, 0, 1, 0), k), 1)
+
+# Run the newton-raphson
+nullFit <- simico_fit_null(init_beta = init_beta, epsilon = 10^-5, xDats = exampleDat$sample$xDats, lt_all = exampleDat$leftTimesMat, rt_all = exampleDat$rightTimesMat, k = k, d = d)
+
+# Get the test statistics p-values
+out <- simico_out(nullFit = nullFit$beta_fit, xDats = exampleDat$sample$xDats, lt_all = exampleDat$leftTimesMat, rt_all = exampleDat$rightTimesMat, Itt = nullFit$jmat, a1 = 1, a2 = 25, G = gMat, k  = k, d = d)
+
+# Print results
+# Score statistic
+out$multQ
+
+# P-value
+out$multP
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

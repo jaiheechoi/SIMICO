@@ -5,7 +5,7 @@
 S_{ik}(L_{ik}) - S_{ik}(R_{ik})
 }
 \description{
-Calculates the difference between the survival functions of the left and right time intervals for outcome k
+Calculates the difference between the survival functions of the left and right time intervals for outcome k for quadrature node d.
 }
 \usage{
 surv_diff(l, d, temp_beta, phen, r1, k)

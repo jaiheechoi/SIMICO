@@ -5,7 +5,7 @@
 S_{ik}(R_{ik})
 }
 \description{
-Calculates the survival function of the right time interval for outcome k
+Calculates the survival function of the right time interval for outcome k for quadrature node d.
 }
 \usage{
 surv_right(l, d, temp_beta, phen, r1, k)
