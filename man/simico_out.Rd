@@ -101,7 +101,7 @@ out <- simico_out(nullFit = nullFit$beta_fit, xDats = exampleDat$sample$xDats, l
 # Score statistic
 out$multQ
 
-# P-value
+# P-values
 out$multP
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -88,7 +88,7 @@ exampleDat <- newgen(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p
 # Set the initial estimate values
 init_beta <-c (rep(c(0, 0, 0, 1, 0), k), 1)
 
-# Run the newton-raphson
+# Run the Newton-Raphson
 nullFit <- simico_fit_null(init_beta = init_beta, epsilon = 10^-5, xDats = exampleDat$sample$xDats, lt_all = exampleDat$leftTimesMat, rt_all = exampleDat$rightTimesMat, k = k, d = d)
 
 }

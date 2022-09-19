@@ -1628,7 +1628,7 @@ simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, 
   # get genetic effects
   geneticVec <- c()
 
-  # calculate the effect size
+  # Calculate the effect size
   for (es in 1:length(effectSizes))
   {
     # create vector for each SNP
