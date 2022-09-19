@@ -91,7 +91,7 @@ gMat <- sim_gmat(n, q, rho)
 fixedMat <- matrix(data=0, nrow=n, ncol=k)
 
 # Generate the multiple outcomes
-exampleDat <- newgen(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMat, effectSizes)
+exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMat, effectSizes)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

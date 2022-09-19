@@ -83,7 +83,7 @@ gMat <- sim_gmat(n, q, rho)
 fixedMat <- matrix(data=0, nrow=n, ncol=k)
 
 # Generate the multiple outcomes
-exampleDat <- newgen(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMat, effectSizes)
+exampleDat <- sim_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMat, effectSizes)
 
 # Set the initial estimate values
 init_beta <-c (rep(c(0, 0, 0, 1, 0), k), 1)
