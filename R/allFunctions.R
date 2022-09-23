@@ -1617,7 +1617,7 @@ simico_out <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d){
 #' @param gMatCausal matrix of subsetted genetic information for only a select causal SNPs
 #' @param effectSizes vector of genetic effects
 #' @export
-#' gen_mICSKAT_dat()
+#' simico_gen_dat()
 simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, effectSizes) {
 
   nocol = p + 3
@@ -1720,7 +1720,8 @@ simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, 
   dataph <- matrix(NA, nrow= n, ncol = nocol)
   vecN <- rep(NA, n)
   dmatph <- list(right_dmat = dataph, left_dmat = dataph)
-  xmatph <- list(dmats = dmatph, lt = vecN, rt = vecN)
+  #xmatph <- list(dmats = dmatph, lt = vecN, rt = vecN)
+  xmatph <- list(dmats = dmatph)
   allph <- matrix(NA, nrow = n, ncol = k)
   threedmat <- list()
   for(i in 1:k){
@@ -1731,8 +1732,8 @@ simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, 
   for(pheno in 1:k){
     samp$xDats[[pheno]]$dmats$right_dmat <- rightArray[,,pheno]
     samp$xDats[[pheno]]$dmats$left_dmat <- leftArray[,,pheno]
-    samp$xDats[[pheno]]$lt <- leftTimesMat[,pheno]
-    samp$xDats[[pheno]]$rt <- rightTimesMat[,pheno]
+    #samp$xDats[[pheno]]$lt <- leftTimesMat[,pheno]
+    #samp$xDats[[pheno]]$rt <- rightTimesMat[,pheno]
   }
 
   samp$ob_all <- obsInd
@@ -1774,3 +1775,25 @@ createInt <- function(obsTimes, eventTime) {
 
 }
 
+
+# Function to subset the gmat by a number of causal SNPs
+Get_CausalSNPs_bynum<-function(gMat, num, Causal.MAF.Cutoff){
+  #Calculate MAF for the genotypes
+  MAF <- apply(gMat, 2, function(x) mean(x)/2)
+
+  IDX<-which(MAF < Causal.MAF.Cutoff)
+  if(length(IDX) == 0){
+    msg<-sprintf("No SNPs with MAF < %f",Causal.MAF.Cutoff)
+    stop(msg)
+  }
+
+  N.causal<-num
+  if(N.causal < 1){
+    N.causal = 1
+  }
+  #print(N.causal)
+  #print(Causal.Ratio)
+  #print(length(IDX))
+  re<-sort(sample(IDX,N.causal))
+  return(re)
+}
