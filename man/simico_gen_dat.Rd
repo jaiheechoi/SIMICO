@@ -82,11 +82,17 @@ xMat <- cbind(rnorm(n), rbinom(n=n, size=1, prob=0.5))
 # Genetic effects
 gMat <- sim_gmat(n, q, rho)
 
+# Get indices to specific select causal variants
+idx <- Get_CausalSNPs_bynum(gMat, num, Causal.MAF.Cutoff)
+
+# Subset the gMat
+gMatCausal <- gMat[,idx]
+
 # True model has nothing
 fixedMat <- matrix(data=0, nrow=n, ncol=k)
 
 # Generate the multiple outcomes
-exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMat, effectSizes)
+exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, effectSizes)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -19,7 +19,7 @@ Get_CausalSNPs_bynum(gMat, num, Causal.MAF.Cutoff)
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-Output is a matrix of genetic information subsetted by a pre-specified number.
+Output is a vector of indices to subset the full genetic matrix.
 }
 \references{
 %% ~put references to the literature/web site here ~
