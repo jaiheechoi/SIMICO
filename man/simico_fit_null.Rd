@@ -89,7 +89,7 @@ exampleDat <- sim_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1,
 init_beta <-c (rep(c(0, 0, 0, 1, 0), k), 1)
 
 # Run the Newton-Raphson
-nullFit <- simico_fit_null(init_beta = init_beta, epsilon = 10^-5, xDats = exampleDat$sample$xDats, lt_all = exampleDat$leftTimesMat, rt_all = exampleDat$rightTimesMat, k = k, d = d)
+nullFit <- simico_fit_null(init_beta = init_beta, epsilon = 10^-5, xDats = exampleDat$fullDat$xDats, lt_all = exampleDat$leftTimesMat, rt_all = exampleDat$rightTimesMat, k = k, d = d)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

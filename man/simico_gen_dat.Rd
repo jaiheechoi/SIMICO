@@ -13,8 +13,7 @@ simico_gen_dat(bhFunInv, obsTimes, windowHalf = 0.1, n, k, tauSq, gMatCausal, ef
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-% bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, effectSizes
-  \item {bhFunInv}{The inverse of the baseline hazard function.}
+  \item{bhFunInv}{The inverse of the baseline hazard function.}
   \item{obsTimes}{Vector of the intended observation times.}
   \item{windowHalf}{The amount of time before or after the intended obsTimes that a visit might take place.}
   \item{n}{Total number of observations.}
@@ -22,17 +21,13 @@ simico_gen_dat(bhFunInv, obsTimes, windowHalf = 0.1, n, k, tauSq, gMatCausal, ef
   \item{k}{Total number of outcomes.}
   \item{tausq}{Variance of the subject specific random effect.}
   \item{gMatCausal}{Matrix of subsetted genetic information for only a select causal SNPs.}
-  \item{effectSizes}{Vector of genetic effect sizes. Should be entered as a vector the same length as the number of outcomes. Each effect size will be multiplied by the }
+  \item{effectSizes}{Vector of genetic effect sizes. Should be entered as a vector the same length as the number of outcomes.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  exactTimesMat = exactTimesMat, leftTimesMat = leftTimesMat,
-%rightTimesMat = rightTimesMat, obsInd = obsInd, tposInd = tposInd
-%%  If it is a LIST, use
-% exactTimesMat = exactTimesMat, leftTimesMat = leftTimesMat,
-              rightTimesMat = rightTimesMat, obsInd = obsInd, tposInd = tposInd, dataFull = xAll))
+
 
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
