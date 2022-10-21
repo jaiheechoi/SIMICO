@@ -12,7 +12,7 @@ simico_fit_null(init_beta, epsilon, xDats, lt_all, rt_all, k, d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{beta_fit}{Starting values for NR.}
+  \item{init_beta}{Starting values for NR.}
   \item{epsilon}{Stopping criterion for NR.}
   \item{xDats}{List of left and right design matrices.}
   \item{lt_all}{n x k matrix of left times.}
@@ -59,6 +59,9 @@ p = 2
 
 # Set number of SNPs
 q = 50
+
+# Set number of causal SNPs
+num = 5
 
 # Set number of quadrature nodes
 d = 100

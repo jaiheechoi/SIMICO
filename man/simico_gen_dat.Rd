@@ -66,6 +66,9 @@ p = 2
 # Set number of SNPs
 q = 50
 
+# Set number of causal SNPs
+num = 5
+
 # Variance of subject-specific random effect
 tausq = 1
 
