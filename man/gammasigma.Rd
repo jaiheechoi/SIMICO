@@ -8,11 +8,10 @@ d^2/d_{gamma_k}d{sigma^2}
 Calculates the Information matrix term of I_{\eta\gamma} for one outcome of interest k.
 }
 \usage{
-gammasigma(x)
+gammasigma(l, HL_array, HR_array, tpos_all, obs_all, apply_diffs, temp_beta, A_i, xDats, no_l_all, no_two_all, gMat, a1, a2, k, d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  % (l, HL_array, HR_array, tpos_all, obs_all, apply_diffs, temp_beta, A_i, xDats, no_l_all, no_two_all, gMat, a1, a2, k, d) {
   \item{l}{Index of first outcome of interest.}
   \item{HL_array}{n x K matrix containing all the hazard values for the left times.}
   \item{HR_array}{n x K matrix containing all the hazard values for the right times.}

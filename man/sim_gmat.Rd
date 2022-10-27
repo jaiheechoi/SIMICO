@@ -8,11 +8,10 @@ Simulate genetic matrix.
 Simulates a n x q genetic matrix.
 }
 \usage{
-sim_gmat(x)
+sim_gmat(n,q,rho)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-% n,q,rho
   \item{n}{Total number of observations.}
   \item{q}{Total number of SNPs.}
   \item{rho}{Common pairwise correlation parameter.}

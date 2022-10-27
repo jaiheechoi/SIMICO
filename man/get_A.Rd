@@ -8,11 +8,10 @@ Get A vector
 Product of difference of survival terms of the left and right interval times, across all outcomes K, summed over all quadrature nodes D
 }
 \usage{
-get_A(x)
+get_A(store, weights, d, n)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-% store, weights, d, n
   \item{store}{Matrix of difference of survival values of the left and right time intervals.}
   \item{weights}{Gaussian quadrature weights.}
   \item{d}{Total number of Gaussian quadrature nodes.}

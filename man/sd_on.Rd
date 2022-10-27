@@ -22,7 +22,6 @@ sd_on(l, k, temp_beta, phen, d, apply_diffs, A_i, no_l_all, HL_array, HR_array)
   \item{no_l_all}{n x (K - 1) matrix containing the product of apply_diffs across all outcomes K excluding the current outcome l.}
   \item{HL_array}{n x K matrix containing all the hazard values for the left times.}
   \item{HR_array}{n x K matrix containing all the hazard values for the right times.}
-  \item{tpos_all}{n x k matrix containing a indictor for whether that time is left-censored or not.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~

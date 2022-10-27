@@ -8,11 +8,10 @@ d^2/d_{gamma_k}d{gamma_j}
 Calculates the [off-diagonal] Information matrix term for I_{\gamma\gamma} with respect to outcome k and outcome j
 }
 \usage{
-gamma_off(x)
+gamma_off(l, m, HL_array, HR_array, tpos_all, obs_all, temp_beta, A_i, no_l_all, no_two_all, gMat, a1, a2, k, d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-% l, m, HL_array, HR_array, tpos_all, obs_all, temp_beta, A_i, no_l_all, no_two_all, gMat, a1, a2, k, d
   \item{l}{Index of first outcome of interest}
   \item{m}{Index of second outcome of interest}
   \item{HL_array}{n x K matrix containing all the hazard values for the left times}

@@ -13,6 +13,7 @@ fd_term(l, temp_beta, phen,d, apply_diffs, A_i, no_l_all,HL_array, HR_array)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 %l, temp_beta, phen,d, apply_diffs, A_i, no_l_all,HL_array, HR_array
+  \item{l}{Outcome of interest.}
   \item{temp_beta}{vector of fitted coefficients.}
   \item{phen}{list containing the covariate design matrices.}
   \item{d}{Number of quadrature nodes.}

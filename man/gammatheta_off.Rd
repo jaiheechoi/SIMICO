@@ -8,11 +8,10 @@ d^2/d_{gamma_k}d{theta_j}
 Calculates the Information matrix term of I_{\eta\gamma} for outcomes k and j
 }
 \usage{
-gammatheta_off(x)
+gammatheta_off(l,m, HL_array, HR_array, xAll, apply_diffs, temp_beta, A_i, no_l_all, no_two_all, gMat, a1, a2, k, d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
- % l,m, HL_array, HR_array, xAll, apply_diffs, temp_beta, A_i, no_l_all, no_two_all, gMat, a1, a2, k, d
    \item{l}{Index of first outcome of interest.}
    \item{m}{Index of second outcome of interest.}
   \item{HL_array}{n x K matrix containing all the hazard values for the left times.}
