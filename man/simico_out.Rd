@@ -74,6 +74,9 @@ tausq = 1
 # Define the effect sizes
 effectSizes <- c(.03, .15, .3)
 
+# Set pairwise correlation parameter
+rho = 0.1
+
 # the baseline cumulative hazard function
 bhFunInv <- function(x) {x}
 
