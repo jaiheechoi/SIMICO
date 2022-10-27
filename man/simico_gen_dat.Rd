@@ -9,7 +9,7 @@ Generate multiple interval-censored data under proportional hazards model.
 
 }
 \usage{
-simico_gen_dat(bhFunInv, obsTimes, windowHalf = 0.1, n, k, tauSq, gMatCausal, effectSizes)
+simico_gen_dat(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, effectSizes)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
