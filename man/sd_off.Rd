@@ -5,7 +5,7 @@
 d^2/d_{\theta_k}d{\sigma^2}
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Calculates the Information matrix term of I_{theta sigma^2} for outcomes l and m.
 }
 \usage{
 sd_off(l, m, phen_l, phen_m, temp_beta, d, apply_diffs, A_i, HL_array, HR_array, no_l_all, no_two_all, tpos_all, obs_all, k)

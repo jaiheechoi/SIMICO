@@ -5,8 +5,7 @@
 d/d\sigma^2
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+Calculates the first derivative term with respect to sigma^2.}
 \usage{
 ss_fd(l, phen, HL_array, HR_array, tpos_all, obs_all, apply_diffs, temp_beta, A_i, no_l_all, k, d)
 }

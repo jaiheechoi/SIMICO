@@ -5,7 +5,7 @@
 Create Time Intervals
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Create time intervals around exact observed time.
 }
 \usage{
 createInt(obsTimes, eventTime)

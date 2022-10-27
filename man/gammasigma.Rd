@@ -5,7 +5,7 @@
 d^2/d_{gamma_k}d{sigma^2}
 }
 \description{
-Calculates the Information matrix term of I_{\eta\gamma} for one outcome of interest k.
+Calculates the Information matrix term of I_{eta gamma} for one outcome of interest k.
 }
 \usage{
 gammasigma(l, HL_array, HR_array, tpos_all, obs_all, apply_diffs, temp_beta, A_i, xDats, no_l_all, no_two_all, gMat, a1, a2, k, d)

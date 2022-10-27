@@ -5,7 +5,7 @@
 d^2/d_{gamma_k}d{theta_j}
 }
 \description{
-Calculates the Information matrix term of I_{\eta\gamma} for outcomes k and j
+Calculates the Information matrix term of I_{eta gamma} for outcomes k and j
 }
 \usage{
 gammatheta_off(l,m, HL_array, HR_array, xAll, apply_diffs, temp_beta, A_i, no_l_all, no_two_all, gMat, a1, a2, k, d)

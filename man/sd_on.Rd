@@ -5,7 +5,7 @@
 d^2/d{\sigma^2}^2
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Calculates the Information matrix term of I_{sigma^2 sigma^2} for outcome l.
 }
 \usage{
 sd_on(l, k, temp_beta, phen, d, apply_diffs, A_i, no_l_all, HL_array, HR_array)
