@@ -19,7 +19,7 @@ simico_gen_dat(bhFunInv, obsTimes, windowHalf = 0.1, n, k, tauSq, gMatCausal, ef
   \item{n}{Total number of observations.}
   \item{p}{Total number of covariates.}
   \item{k}{Total number of outcomes.}
-  \item{tausq}{Variance of the subject specific random effect.}
+  \item{tauSq}{Variance of the subject specific random effect.}
   \item{gMatCausal}{Matrix of subsetted genetic information for only a select causal SNPs.}
   \item{effectSizes}{Vector of genetic effect sizes. Should be entered as a vector the same length as the number of outcomes.}
 }
@@ -70,7 +70,7 @@ q = 50
 num = 5
 
 # Variance of subject-specific random effect
-tausq = 1
+tauSq = 1
 
 # Define the effect sizes
 effectSizes <- c(.03, .15, .3)

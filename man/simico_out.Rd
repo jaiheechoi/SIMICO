@@ -69,7 +69,7 @@ num = 5
 d = 100
 
 # Variance of subject-specific random effect
-tausq = 1
+tauSq = 1
 
 # Define the effect sizes
 effectSizes <- c(.03, .15, .3)

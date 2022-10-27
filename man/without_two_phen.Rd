@@ -5,7 +5,7 @@
 Survival Difference Product without Outcomes l and m
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Differnence of survival functions multiplied across all outcomes excluding outcomes l and m.
 }
 \usage{
 without_two_phen(l, m, k, store, n, d)

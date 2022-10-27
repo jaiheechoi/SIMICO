@@ -26,7 +26,7 @@ gammatheta_off(x)
   \item{gMat}{n x q matrix of genetic information.}
   \item{a1}{First shape parameter of beta parameter.}
   \item{a2}{Second shape parameter of beta parameter.}
-  \item{k} {Total number of outcomes.}
+  \item{k}{Total number of outcomes.}
   \item{d}{Number of quadrature nodes.}
 }
 \details{
