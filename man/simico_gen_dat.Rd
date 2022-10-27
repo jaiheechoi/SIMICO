@@ -78,6 +78,9 @@ effectSizes <- c(.03, .15, .3)
 # Set pairwise correlation parameter
 rho = 0.1
 
+# Set MAF cutoff for causal SNPs
+Causal.MAF.Cutoff = 0.05
+
 # the baseline cumulative hazard function
 bhFunInv <- function(x) {x}
 

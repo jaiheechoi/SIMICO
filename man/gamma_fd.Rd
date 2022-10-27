@@ -3,6 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 d/d_{gamma_k}
+}
 \description{
 Calculates the gradient term for U_g for the score statistic.
 }
