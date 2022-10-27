@@ -6,6 +6,7 @@ Simulate genetic matrix.
 }
 \description{
 Simulates a n x q genetic matrix.
+Imports: bindata
 }
 \usage{
 sim_gmat(x)
