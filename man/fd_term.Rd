@@ -5,7 +5,7 @@
 d/d\theta_l
 }
 \description{
-Calculate the first derivative of the theta terms for outcome l.
+Calculate the first derivative of the theta terms for outcome l
 }
 \usage{
 fd_term(l, temp_beta, phen,d, apply_diffs, A_i, no_l_all,HL_array, HR_array)
