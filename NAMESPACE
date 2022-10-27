@@ -1,2 +1,6 @@
 exportPattern("^[[:alpha:]]+")
-#' @import bindata
+importFrom(bindata, rmvbin)
+importFrom(fastGHQuad, gaussHermiteData)
+importFrom(CompQuadForm, davies)
+importFrom(stats, pchisq)
+import(ICSKAT)
