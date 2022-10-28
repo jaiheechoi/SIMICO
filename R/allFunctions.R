@@ -1,14 +1,6 @@
 # multiICSKAT functions
 
-#' Left Survival Function
-#'
-#' Calculate the left surivival function value.
-#' @param l observation value of interest
-#' @param d number of Gaussian Quadrature points
-#' @param temp_beta vector of parameter estimates
-#' @param phen list of data matrices containing both left and right information
-#' @param r1 nodes of quadrature points
-#' @param k number of outcomes
+# Left Survival Function
 surv_left <- function(l, d, temp_beta, phen, r1, k){
 
   # get beta values for chosen outcome
@@ -37,14 +29,6 @@ surv_left <- function(l, d, temp_beta, phen, r1, k){
 
 }
 
-#' Calculate the right survival function value.
-#' @param l observation value of interest
-#' @param d number of Gaussian Quadrature points
-#' @param temp_beta vector of parameter estimates
-#' @param phen list of data matrices containing both left and right information
-#' @param r1 nodes of quadrature points
-#' @param k number of outcomes
-# Right Surivival Function
 surv_right <- function(l, d, temp_beta, phen, r1, k){
 
   # get beta values for chosen outcome
@@ -75,13 +59,6 @@ surv_right <- function(l, d, temp_beta, phen, r1, k){
 
 }
 
-#' Calculate the left hazard function value.
-#' @param l observation value of interest
-#' @param d number of Gaussian Quadrature points
-#' @param temp_beta vector of parameter estimates
-#' @param phen list of data matrices containing both left and right information
-#' @param r1 nodes of quadrature points
-#' @param k number of outcomes
 # Left Hazard Function
 haz_left <- function(l, d, temp_beta, phen, r1, k){
 
@@ -107,13 +84,7 @@ haz_left <- function(l, d, temp_beta, phen, r1, k){
   return(hl1)
 }
 
-#' Calculate the right hazard function value.
-#' @param l observation value of interest
-#' @param d number of Gaussian Quadrature points
-#' @param temp_beta vector of parameter estimates
-#' @param phen list of data matrices containing both left and right information
-#' @param r1 nodes of quadrature points
-#' @param k number of outcomes
+
 # Right Hazard Function
 haz_right <- function(l, d, temp_beta, phen, r1, k){
 
@@ -141,13 +112,7 @@ haz_right <- function(l, d, temp_beta, phen, r1, k){
 
 }
 
-#' Calculate the difference between left and right survival terms.
-#' @param l observation value of interest
-#' @param d number of Gaussian Quadrature points
-#' @param temp_beta vector of parameter estimates
-#' @param phen list of data matrices containing both left and right information
-#' @param r1 nodes of quadrature points
-#' @param k number of outcomes
+
 # Surv diff
 surv_diff <- function(l,d,temp_beta, phen, r1, k){
 
@@ -156,10 +121,6 @@ surv_diff <- function(l,d,temp_beta, phen, r1, k){
 }
 
 
-#' Calculate the product of the difference between survival terms excluding that of the outcome of interest
-#' @param l observation value of interest
-#' @param k number of outcomes
-#' @param store array of difference between left and right survival values
 without_one_phen <- function(l, k, store){
 
   #if total two outcomes
@@ -186,14 +147,7 @@ without_one_phen <- function(l, k, store){
 
 }
 
-#' Calculate the product of the difference between survival terms excluding that of two outcomes of interest
-#' @param l observation value of interest
-#' @param m second observation of interest
-#' @param k number of outcomes
-#' @param store array of difference between left and right survival values
-#' @param n number of observations
-#' @param d number of quadrature nodes
-#' @return A list with the elements:
+
 without_two_phen <- function(l,m, k, store, n, d){
 
   # get index of outcomes for all not equal to outcomes l and m
@@ -207,11 +161,7 @@ without_two_phen <- function(l,m, k, store, n, d){
 
 }
 
-#' Calculate the denominator term of the derivative of the likelihood
-#' @param store array of difference between left and right survival values
-#' @param weights quadrature weights
-#' @param d number of quadrature nodes
-#' @param n number of observations
+
 get_A <- function(store, weights, d, n){
 
   #number of outcomes
@@ -1235,17 +1185,6 @@ gammasigma <- function(l, HL_array, HR_array, tpos_all, obs_all, apply_diffs, te
 
 # newton raphson, get p-value, generate data
 
-#' Newton Raphson Function
-#'
-#' @param init_beta starting values for NR
-#' @param epsilon stopping criterion for NR
-#' @param xDats list of design matrices
-#' @param lt_all n x k matrix of left times
-#' @param rt_all n x k matrix of right times
-#' @param k number of outcomes
-#' @param d number of quadrature points
-#' @export
-#' simico_fit_null()
 simico_fit_null <- function(init_beta, epsilon, xDats, lt_all, rt_all, k, d) {
 
   # number of observations
@@ -1417,20 +1356,6 @@ simico_fit_null <- function(init_beta, epsilon, xDats, lt_all, rt_all, k, d) {
 
 
 ############### get p value
-#' test statistic and pvalue calculation
-#'
-#' @param nullFit beta values fitted from NR
-#' @param xDats list of design matrices
-#' @param lt_all n x k matrix of left times
-#' @param rt_all n x k matrix of right times
-#' @param Itt information of theta terms from NR
-#' @param a1 first beta distribution shape parameter for weights
-#' @param a2 second beta distribution shape parameter for weights
-#' @param G n x q matrix of genetic information
-#' @param k number of outcomes
-#' @param d number of quadrature points
-#' @export
-#' simico_out()
 simico_out <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d){
 
   # quadrature weights and roots
@@ -1606,18 +1531,7 @@ simico_out <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d){
 
 
 ################################################# F6
-#' Sample generation
-#'
-#' @param bhFunInv A function, the inverse of the baseline hazard function.
-#' @param obsTimes Vector of the intended observation times.
-#' @param windowHalf The amount of time before or after the intended obsTimes that a visit might take place.
-#' @param n number of observations
-#' @param k number of outcomes
-#' @param tausq variance of subject specific random effect
-#' @param gMatCausal matrix of subsetted genetic information for only a select causal SNPs
-#' @param effectSizes vector of genetic effects
-#' @export
-#' simico_gen_dat()
+#Sample generation
 simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, effectSizes) {
 
   nocol = p + 3
