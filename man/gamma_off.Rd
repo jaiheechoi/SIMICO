@@ -25,6 +25,7 @@ gamma_off(l, m, HL_array, HR_array, tpos_all, obs_all, temp_beta, A_i, no_l_all,
   \item{gMat}{n x q matrix of genetic information}
   \item{a1}{First shape parameter of beta parameter}
   \item{a2}{Second shape parameter of beta parameter}
+  \item{k}{Total number of outcomes.}
   \item{d}{Number of quadrature nodes}
 }
 \details{
@@ -51,5 +52,5 @@ The output is a matrix containing the component of the information matrix of the
 \examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
+%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
