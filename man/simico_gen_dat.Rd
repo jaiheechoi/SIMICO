@@ -23,9 +23,9 @@ simico_gen_dat(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatC
   \item{gMatCausal}{Matrix of subsetted genetic information for only a select causal SNPs.}
   \item{effectSizes}{Vector of genetic effect sizes. Should be entered as a vector the same length as the number of outcomes.}
 }
-\details{
+%\details{
 %%  ~~ If necessary, more details than the description above ~~
-}
+%}
 \value{
 
 
@@ -38,21 +38,21 @@ simico_gen_dat(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatC
    \item{tposInd}{n x k matrix containing a indictor for whether that time is left-censored or not}
    \item{fullDat}{Data in complete form to enter into SIMICO functions.}
 }
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
-\author{
+%}
+%\author{
 %%  ~~who you are~~
-}
-\note{
+%}
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+%}
 \examples{
 # Set three outcomes
 k = 3

@@ -25,28 +25,18 @@ gamma_fd(l, HL_array, HR_array, tpos_all, obs_all, temp_beta, A_i, no_l_all, gMa
   \item{a2}{Second shape parameter of beta parameter}
   \item{d}{Number of quadrature nodes}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+%\details{}
 \value{
 The output is a vector containing the first derivative with respect to gamma.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
+%\references{}
+%\author{}
+%\note{}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{}
+%\seealso{}
+%\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 %\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

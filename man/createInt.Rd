@@ -15,27 +15,27 @@ createInt(obsTimes, eventTime)
   \item{obsTimes}{A vector of all the times a subject is observed.}
   \item{eventTime}{The exact event time for the subject.}
 }
-\details{
+%\details{
 %%  ~~ If necessary, more details than the description above ~~
-}
+%}
 \value{
 A 2*1 vector which is the interval of the event time.
 }
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
+%}
 \author{
 Originally from the ICSKAT package.
 }
-\note{
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+%}
 \examples{
 obsTimes <- 1:10
 eventTime <- 2.5

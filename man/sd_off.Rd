@@ -2,7 +2,7 @@
 \alias{sd_off}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-d^2/d_{\theta_k}d{\sigma^2}
+d^2/d_{theta_k}d{sigma^2}
 }
 \description{
 Calculates the Information matrix term of I_{theta sigma^2} for outcomes l and m.
@@ -28,27 +28,27 @@ sd_off(l, m, phen_l, phen_m, temp_beta, d, apply_diffs, A_i, HL_array, HR_array,
   \item{obs_all}{n x k matrix containing a indictor for whether that time is right-censored or not.}
   \item{k}{Total number of outcomes.}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+%\details{
+%%%  ~~ If necessary, more details than the description above ~~
+%}
 \value{
 The output is a matrix containing the component of the information matrix of the sigma and theta parameters.}
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
-\author{
+%}
+%\author{
 %%  ~~who you are~~
-}
-\note{
+%}
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{}
+%}
+%\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 %\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

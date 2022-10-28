@@ -5,7 +5,7 @@
 d^2/d_{gamma_k}d{gamma_k}
 }
 \description{
-Calculates the [on-diagonal] Information matrix term for I_{\gamma\gamma} with respect to outcome k
+Calculates the [on-diagonal] Information matrix term for I_{gamma gamma} with respect to outcome k
 }
 \usage{
 gamma_on(l, HL_array, HR_array, tpos_all, obs_all, temp_beta, A_i, no_l_all, gMat, a1, a2, d)
@@ -25,28 +25,28 @@ gamma_on(l, HL_array, HR_array, tpos_all, obs_all, temp_beta, A_i, no_l_all, gMa
   \item{a2}{Second shape parameter of beta parameter.}
   \item{d}{Number of quadrature nodes.}
 }
-\details{
+%\details{
 %%  ~~ If necessary, more details than the description above ~~
-}
+%}
 \value{
 The output is a matrix containing the component of the information matrix of the gamma parameter for outcome l.
 }
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
-\author{
+%}
+%\author{
 %%  ~~who you are~~
-}
-\note{
+%}
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{}
+%}
+%\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 %\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

@@ -2,10 +2,10 @@
 \alias{st_off}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-d^2/d_{\theta_k}d{\sigma^2}
+d^2/d_{theta_k}d{sigma^2}
 }
 \description{
-Calculates the Information matrix term of I_{\eta\theta} for one outcome of interest k.
+Calculates the Information matrix term of I_{eta theta} for one outcome of interest k.
 }
 \usage{
 st_off(l, HL_array, HR_array, xAll, apply_diffs, temp_beta, A_i, no_l_all, no_two_all, k, d)
@@ -24,27 +24,27 @@ st_off(l, HL_array, HR_array, xAll, apply_diffs, temp_beta, A_i, no_l_all, no_tw
   \item{k}{Total number of outcomes.}
   \item{d}{Number of quadrature nodes.}
 }
-\details{
+%\details{
 %%  ~~ If necessary, more details than the description above ~~
-}
+%}
 \value{
 The output is a matrix containing the component of the information matrix of the theta eta parameters for outcome l}
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
-\author{
+%}
+%\author{
 %%  ~~who you are~~
-}
-\note{
+%}
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{}
+%}
+%\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 %\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

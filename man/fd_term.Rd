@@ -2,7 +2,7 @@
 \alias{fd_term}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-d/d\theta_l
+d/d_{theta_l}
 }
 \description{
 Calculate the first derivative of the theta terms for outcome l
@@ -23,29 +23,21 @@ fd_term(l, temp_beta, phen,d, apply_diffs, A_i, no_l_all,HL_array, HR_array)
   \item{HL_array}{n x K matrix containing all the hazard values for the left times.}
   \item{HR_array}{n x K matrix containing all the hazard values for the right times.}
 }
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
+%\details{}
 \value{
 %%  fd
 The output is a 1 x (p + 2) vector of the first derivative terms for outcome l.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
+%\references{}
+%\author{}
+%\note{}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{}
+%}
+%\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 %\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

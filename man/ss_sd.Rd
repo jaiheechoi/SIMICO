@@ -2,7 +2,7 @@
 \alias{ss_sd}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-d^2/d_{\sigma^2}^2
+d^2/d_{sigma^2}^2
 }
 \description{
 Calculates the second derivative term with respect to sigma^2.}
@@ -23,27 +23,27 @@ ss_sd(HL_array, HR_array, xAll, apply_diffs, temp_beta, A_i, no_l_all, no_two_al
   \item{d}{Number of quadrature nodes.}
 
 }
-\details{
+%\details{
 %%  ~~ If necessary, more details than the description above ~~
-}
+%}
 \value{
 The output is a single value for the second derivative with respect to sigma.}
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
-\author{
+%}
+%\author{
 %%  ~~who you are~~
-}
-\note{
+%}
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{}
+%}
+%\examples{}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 %\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")

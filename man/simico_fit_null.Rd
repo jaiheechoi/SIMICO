@@ -20,9 +20,9 @@ simico_fit_null(init_beta, epsilon, xDats, lt_all, rt_all, k, d)
   \item{k}{Total number of outcomes.}
   \item{d}{Total number of quadrature nodes.}
 }
-\details{
+%\details{
 %%  ~~ If necessary, more details than the description above ~~
-}
+%}
 \value{
 %%  temp_beta = temp_beta, iter = iter, diff = diff, jmat = jmat, grad = grad
  \item{beta_fit}{vector of fitted coefficients}
@@ -32,21 +32,21 @@ simico_fit_null(init_beta, epsilon, xDats, lt_all, rt_all, k, d)
  \item{grad}{Vector of the first derivaive of the theta parameters}
 %% ...
 }
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
-\author{
+%}
+%\author{
 %%  ~~who you are~~
-}
-\note{
+%}
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+%}
 \examples{
 # Set three outcomes
 k = 3

@@ -17,16 +17,16 @@ simico_out(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d)
   \item{xDats}{List of design matrices.}
   \item{lt_all}{Matrix containing the generated left interval times.}
   \item{rt_all}{Matrix containing the generated right interval times.}
-  \item{Itt}{I_{\theta\theta} - Information matrix of thetha.}
+  \item{Itt}{I_{theta theta} - Information matrix of thetha.}
   \item{G}{n x q matrix of genetic information.}
   \item{a1}{First shape parameter of beta parameter.}
   \item{a2}{Second shape parameter of beta parameter.}
   \item{k}{Total number of outcomes.}
   \item{d}{Number of quadrature nodes}
 }
-\details{
+%\details{
 %%  ~~ If necessary, more details than the description above ~~
-}
+%}
 \value{
 %%  multQ = gamma_score, multP = pval$Qq, burdQ = burden_score, burdP = p_burden
   \item{multQ}{Score statistic for multiple outcome test.}
@@ -34,21 +34,21 @@ simico_out(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d)
   \item{burdQ}{Score statistic for multiple burden test.}
   \item{burdP}{P-value for multiple burden test.}
 }
-\references{
+%\references{
 %% ~put references to the literature/web site here ~
-}
-\author{
+%}
+%\author{
 %%  ~~who you are~~
-}
-\note{
+%}
+%\note{
 %%  ~~further notes~~
-}
+%}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
+%\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+%}
 \examples{
 # Set three outcomes
 k = 3
