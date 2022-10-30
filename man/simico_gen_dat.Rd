@@ -10,7 +10,7 @@ Generate multiple interval-censored data under proportional hazards model.
 }
 \usage{
 simico_gen_dat(bhFunInv, obsTimes = 1:3, windowHalf = 0.1,
-   n, p, k, tauSq, gMatCausal, effectSizes)
+   n, p, k, tauSq, gMatCausal, xMat, effectSizes)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,6 +22,7 @@ simico_gen_dat(bhFunInv, obsTimes = 1:3, windowHalf = 0.1,
   \item{k}{Total number of outcomes.}
   \item{tauSq}{Variance of the subject specific random effect.}
   \item{gMatCausal}{Matrix of subsetted genetic information for only a select causal SNPs.}
+  \item{xMat}{Matrix of covariates.}
   \item{effectSizes}{Vector of genetic effect sizes. Should be entered as a vector the same length as the number of outcomes.}
 }
 %\details{
@@ -87,7 +88,10 @@ bhFunInv <- function(x) {x}
 
 set.seed(1)
 
-# Genetic effects
+# Generate covariate matrix
+xMat <- cbind(rnorm(n), rbinom(n=n, size=1, prob=0.5))
+
+# Generate genetic matrix
 gMat <- sim_gmat(n, q, rho)
 
 # Get indices to specific select causal variants
@@ -97,7 +101,8 @@ idx <- Get_CausalSNPs_bynum(gMat, num, Causal.MAF.Cutoff)
 gMatCausal <- gMat[,idx]
 
 # Generate the multiple outcomes
-exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, effectSizes)
+exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3,
+   windowHalf = 0.1, n, p, k, tauSq, gMatCausal, xMat, effectSizes)
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

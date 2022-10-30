@@ -1532,7 +1532,7 @@ simico_out <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d){
 
 ################################################# F6
 #Sample generation
-simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, effectSizes) {
+simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, xMat, effectSizes) {
 
   nocol = p + 3
   # number of subjects and outcomes
