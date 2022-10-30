@@ -158,7 +158,7 @@ fixedMat <- matrix(data=0, nrow=n, ncol=k)
 exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3,
                              windowHalf = 0.1, n = n, p = p, k = k, 
                              tauSq = tauSq, gMatCausal = gMatCausal,
-                             effectSizes = effectSizes)
+                             xMat = xMat, effectSizes = effectSizes)
 
 
 # Set the initial estimate values
@@ -223,7 +223,9 @@ gMat <- sim_gmat(n, q, rho)
 fixedMat <- matrix(data=0, nrow=n, ncol=k)
 
 # Generate the multiple outcomes
-exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMat, effectSizes)
+exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3,
+                             windowHalf = 0.1, n, p, k, tauSq, 
+                             gMat, xMat, effectSizes)
 
 # Set the initial estimate values
 init_beta <-c (rep(c(0, 0, 0, 1, 0), k), 1)
