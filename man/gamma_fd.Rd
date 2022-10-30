@@ -8,7 +8,8 @@ d/d_{gamma_k}
 Calculates the gradient term for U_g for the score statistic.
 }
 \usage{
-gamma_fd(l, HL_array, HR_array, tpos_all, obs_all, temp_beta, A_i, no_l_all, gMat, a1, a2, d)
+gamma_fd(l, HL_array, HR_array, tpos_all, obs_all,
+   temp_beta, A_i, no_l_all, gMat, a1, a2, d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

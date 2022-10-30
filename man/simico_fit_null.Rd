@@ -82,8 +82,6 @@ Causal.MAF.Cutoff = 0.05
 bhFunInv <- function(x) {x}
 
 set.seed(1)
-# Fixed effects
-xMat <- cbind(rnorm(n), rbinom(n=n, size=1, prob=0.5))
 
 # Genetic effects
 gMat <- sim_gmat(n, q, rho)
@@ -93,9 +91,6 @@ idx <- Get_CausalSNPs_bynum(gMat, num, Causal.MAF.Cutoff)
 
 # Subset the gMat
 gMatCausal <- gMat[,idx]
-
-# True model has nothing
-fixedMat <- matrix(data=0, nrow=n, ncol=k)
 
 # Generate the multiple outcomes
 exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, effectSizes)

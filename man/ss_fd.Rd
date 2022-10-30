@@ -7,7 +7,8 @@ d/d_{sigma^2}
 \description{
 Calculates the first derivative term with respect to sigma^2.}
 \usage{
-ss_fd(l, phen, HL_array, HR_array, tpos_all, obs_all, apply_diffs, temp_beta, A_i, no_l_all, k, d)
+ss_fd(l, phen, HL_array, HR_array, tpos_all, obs_all,
+   apply_diffs, temp_beta, A_i, no_l_all, k, d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

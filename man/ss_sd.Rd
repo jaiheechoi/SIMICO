@@ -7,7 +7,8 @@ d^2/d_{sigma^2}^2
 \description{
 Calculates the second derivative term with respect to sigma^2.}
 \usage{
-ss_sd(HL_array, HR_array, xAll, apply_diffs, temp_beta, A_i, no_l_all, no_two_all, k, d)
+ss_sd(HL_array, HR_array, xAll, apply_diffs, temp_beta,
+   A_i, no_l_all, no_two_all, k, d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

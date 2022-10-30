@@ -8,7 +8,8 @@ d/d_{theta_l}
 Calculate the first derivative of the theta terms for outcome l
 }
 \usage{
-fd_term(l, temp_beta, phen,d, apply_diffs, A_i, no_l_all,HL_array, HR_array)
+fd_term(l, temp_beta, phen,d, apply_diffs,
+   A_i, no_l_all,HL_array, HR_array)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

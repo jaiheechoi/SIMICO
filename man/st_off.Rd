@@ -8,7 +8,8 @@ d^2/d_{theta_k}d{sigma^2}
 Calculates the Information matrix term of I_{eta theta} for one outcome of interest k.
 }
 \usage{
-st_off(l, HL_array, HR_array, xAll, apply_diffs, temp_beta, A_i, no_l_all, no_two_all, k, d)
+st_off(l, HL_array, HR_array, xAll, apply_diffs,
+   temp_beta, A_i, no_l_all, no_two_all, k, d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
