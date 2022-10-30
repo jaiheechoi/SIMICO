@@ -2,7 +2,7 @@
 \alias{sd_on}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-d^2/d{\sigma^2}^2
+d^2/d{sigma^2}^2
 }
 \description{
 Calculates the Information matrix term of I_{sigma^2 sigma^2} for outcome l.

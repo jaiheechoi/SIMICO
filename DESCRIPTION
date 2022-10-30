@@ -4,9 +4,8 @@ Title: What the Package Does (Title Case)
 Version: 0.1.0
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: This package implements Set-based inference for multiple interval-censored outcomes. This methodologies tests an association between a set of genetic variants and multiple correlated outcomes that are interval censored. Interval-censored data arises when the exact time of the onset of an outcome of interest is unknown but known to fall between two time points.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
