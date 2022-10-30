@@ -8,7 +8,8 @@ d^2/d_{gamma_k}d{gamma_k}
 Calculates the [on-diagonal] Information matrix term for I_{gamma gamma} with respect to outcome k
 }
 \usage{
-gamma_on(l, HL_array, HR_array, tpos_all, obs_all, temp_beta, A_i, no_l_all, gMat, a1, a2, d)
+gamma_on(l, HL_array, HR_array, tpos_all, obs_all,
+   temp_beta, A_i, no_l_all, gMat, a1, a2, d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

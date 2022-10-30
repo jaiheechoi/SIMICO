@@ -105,10 +105,19 @@ exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3,
 init_beta <-c (rep(c(0, 0, 0, 1, 0), k), 1)
 
 # Run the newton-raphson
-nullFit <- simico_fit_null(init_beta = init_beta, epsilon = 10^-5, xDats = exampleDat$fullDat$xDats, lt_all = exampleDat$leftTimesMat, rt_all = exampleDat$rightTimesMat, k = k, d = d)
+nullFit <- simico_fit_null(init_beta = init_beta,
+   epsilon = 10^-5, xDats = exampleDat$fullDat$xDats,
+   lt_all = exampleDat$leftTimesMat,
+   rt_all = exampleDat$rightTimesMat,
+   k = k, d = d)
 
 # Get the test statistics p-values
-out <- simico_out(nullFit = nullFit$beta_fit, xDats = exampleDat$fullDat$xDats, lt_all = exampleDat$leftTimesMat, rt_all = exampleDat$rightTimesMat, Itt = nullFit$jmat, a1 = 1, a2 = 25, G = gMat, k  = k, d = d)
+out <- simico_out(nullFit = nullFit$beta_fit,
+   xDats = exampleDat$fullDat$xDats,
+   lt_all = exampleDat$leftTimesMat,
+   rt_all = exampleDat$rightTimesMat,
+   Itt = nullFit$jmat, a1 = 1, a2 = 25,
+   G = gMat, k  = k, d = d)
 
 # Print results
 # Score statistic
