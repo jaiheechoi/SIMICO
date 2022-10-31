@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^Vignette.Rmd
 ^Vignette.html
+^cran-comments\.md$
