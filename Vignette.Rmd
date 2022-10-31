@@ -10,7 +10,7 @@ vignette: >
 ---
 
 ### Introduction
-This package implements the multiple outcome test and multiple burden test specified in "Variance-components Tests for Genetic Association with Multiple Interval-censored Outcomes".
+(S)et-based (I)nference for (M)ultiple (I)nterval-(C)ensored (O)utcomes, or SIMICO, implements the multiple outcome test and multiple burden test specified in "Variance-components Tests for Genetic Association with Multiple Interval-censored Outcomes".
 
 Users can test a set of genetic variants with multiple interval-censored outcomes. Interval-censored outcomes arises when the exact time of onset of an event of interest is unknown but is known to fall between two time points. This type of data occurs in many large-scale genetic compendiums, such as the UK Biobank. Due to the large scale nature of these compendiums, one way that information is collected is via periodic questionnaires, causing much of the data to be interval-censored. 
 
