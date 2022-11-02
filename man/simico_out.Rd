@@ -50,11 +50,11 @@ simico_out(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-# Set three outcomes
-k = 3
+# Set number of outcomes
+k = 2
 
 # Set number of observations
-n = 1500
+n = 100
 
 # Set number of covariates
 p = 2
@@ -72,13 +72,10 @@ d = 100
 tauSq = 1
 
 # Define the effect sizes
-effectSizes <- c(.03, .15, .3)
-
-# Set pairwise correlation parameter
-rho = 0.1
+effectSizes <- c(.03, .15)
 
 # Set MAF cutoff for causal SNPs
-Causal.MAF.Cutoff = 0.05
+Causal.MAF.Cutoff = 0.1
 
 # the baseline cumulative hazard function
 bhFunInv <- function(x) {x}
@@ -89,7 +86,7 @@ set.seed(1)
 xMat <- cbind(rnorm(n), rbinom(n=n, size=1, prob=0.5))
 
 # Generate genetic matrix
-gMat <- sim_gmat(n, q, rho)
+gMat <- matrix(data=rbinom(n=n*q, size=2, prob=0.1), nrow=n)
 
 # Get indices to specific select causal variants
 idx <- Get_CausalSNPs_bynum(gMat, num, Causal.MAF.Cutoff)
@@ -99,7 +96,8 @@ gMatCausal <- gMat[,idx]
 
 # Generate the multiple outcomes
 exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3,
-   windowHalf = 0.1, n, p, k, tauSq, gMatCausal, xMat, effectSizes)
+                             windowHalf = 0.1, n, p, k, tauSq, gMatCausal,
+                             xMat, effectSizes)
 
 # Set the initial estimate values
 init_beta <-c (rep(c(0, 0, 0, 1, 0), k), 1)

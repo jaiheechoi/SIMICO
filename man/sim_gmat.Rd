@@ -5,7 +5,7 @@
 Simulate genetic matrix.
 }
 \description{
-Simulates a n x q genetic matrix.
+Simulates a n x q genetic matrix with the option to specify the common pairwise correlation.
 }
 \usage{
 sim_gmat(n,q,rho)
@@ -38,9 +38,16 @@ The result of a n x q genetic matrix of q SNPs.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
+# Set sample size
 n = 1500
+
+# Set number of SNPs
 q = 50
+
+# Set common pairwise correlation
 rho = 0.1
+
+# Simulate genetic matrix
 gMat <- sim_gmat(n, q, rho)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
