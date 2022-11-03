@@ -39,10 +39,10 @@ The result of a n x q genetic matrix of q SNPs.
 %}
 \examples{
 # Set sample size
-n = 1500
+n = 100
 
 # Set number of SNPs
-q = 50
+q = 5
 
 # Set common pairwise correlation
 rho = 0.1
