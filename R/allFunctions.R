@@ -1346,8 +1346,6 @@ simico_fit_null <- function(init_beta, epsilon, xDats, lt_all, rt_all, k, d) {
     # update the new beta
     temp_beta <- matrix(beta_new, nrow = 1)
 
-    print(iter)
-    print(diff)
   }
 
   return(list(beta_fit = temp_beta, iter = iter, diff = diff, jmat = jmat, grad = grad))
@@ -1600,7 +1598,7 @@ simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, 
                        MARGIN=2, STATS=obsTimes, FUN="+")
 
     # make the interval for each subject
-    allInts <- t(mapply(FUN=createInt, obsTimes = data.frame(t(allVisits)), eventTime=exactTimesMat[, pheno_it]))
+    allInts <- t(mapply(FUN=ICSKAT::createInt, obsTimes = data.frame(t(allVisits)), eventTime=exactTimesMat[, pheno_it]))
 
     leftTimesMat[, pheno_it] <- allInts[, 1]
     rightTimesMat[, pheno_it] <- allInts[, 2]
@@ -1660,36 +1658,6 @@ simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, 
 
 }
 
-
-# function needed to generate data
-createInt <- function(obsTimes, eventTime) {
-
-  # order the times in case the random portion causes them to go out of order
-  orderedTimes <- sort(obsTimes)
-
-  # left end of interval
-  minIdx <- which(orderedTimes < eventTime)
-
-  if (length(minIdx) == 0) {
-    minTime <- 0
-  } else {
-    minTime <- orderedTimes[max(minIdx)]
-  }
-
-  # right end of interval
-  maxIdx <- which(orderedTimes >= eventTime)
-
-  if (length(maxIdx) == 0) {
-    maxTime <- Inf
-  } else {
-    maxTime <- orderedTimes[min(maxIdx)]
-
-  }
-  return(c(minTime, maxTime))
-
-}
-
-
 # Function to subset the gmat by a number of causal SNPs
 Get_CausalSNPs_bynum<-function(gMat, num, Causal.MAF.Cutoff){
   #Calculate MAF for the genotypes
@@ -1705,9 +1673,7 @@ Get_CausalSNPs_bynum<-function(gMat, num, Causal.MAF.Cutoff){
   if(N.causal < 1){
     N.causal = 1
   }
-  #print(N.causal)
-  #print(Causal.Ratio)
-  #print(length(IDX))
+
   re<-sort(sample(IDX,N.causal))
   return(re)
 }

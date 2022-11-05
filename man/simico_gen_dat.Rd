@@ -1,6 +1,5 @@
 \name{simico_gen_dat}
 \alias{simico_gen_dat}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 simico_gen_dat()
 }
@@ -12,7 +11,6 @@ Generate multiple interval-censored data under proportional hazards model.
 simico_gen_dat(bhFunInv, obsTimes = 1:3, windowHalf = 0.1,
    n, p, k, tauSq, gMatCausal, xMat, effectSizes)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{bhFunInv}{The inverse of the baseline hazard function.}
   \item{obsTimes}{Vector of the intended observation times.}
@@ -25,36 +23,14 @@ simico_gen_dat(bhFunInv, obsTimes = 1:3, windowHalf = 0.1,
   \item{xMat}{Matrix of covariates.}
   \item{effectSizes}{Vector of genetic effect sizes. Should be entered as a vector the same length as the number of outcomes.}
 }
-%\details{
-%%  ~~ If necessary, more details than the description above ~~
-%}
 \value{
-
-
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-   \item{exactTimesMat}{n x k matrix containing the simulated exact times that the event occurred}
-   \item{leftTimesMat}{n x k matrix containing the left time interval that is observed}
-   \item{rightTimesMat}{n x k matrix containing the right time interval that is observed}
-   \item{obsInd}{n x k matrix containing a indictor for whether that time is right-censored or not}
-   \item{tposInd}{n x k matrix containing a indictor for whether that time is left-censored or not}
+   \item{exactTimesMat}{n x k matrix containing the simulated exact times that the event occurred.}
+   \item{leftTimesMat}{n x k matrix containing the left time interval that is observed.}
+   \item{rightTimesMat}{n x k matrix containing the right time interval that is observed.}
+   \item{obsInd}{n x k matrix containing a indictor for whether that time is right-censored or not.}
+   \item{tposInd}{n x k matrix containing a indictor for whether that time is left-censored or not.}
    \item{fullDat}{Data in complete form to enter into SIMICO functions.}
 }
-%\references{
-%% ~put references to the literature/web site here ~
-%}
-%\author{
-%%  ~~who you are~~
-%}
-%\note{
-%%  ~~further notes~~
-%}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
 \examples{
 # Set number of outcomes
 k = 2
@@ -105,7 +81,3 @@ exampleDat <- simico_gen_dat(bhFunInv = bhFunInv, obsTimes = 1:3,
                              windowHalf = 0.1, n, p, k, tauSq, gMatCausal,
                              xMat, effectSizes)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
