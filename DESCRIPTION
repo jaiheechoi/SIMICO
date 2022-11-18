@@ -15,6 +15,7 @@ Imports:
     fastGHQuad,
     CompQuadForm,
     stats,
-    rje,
-    knitr
+    rje
+Suggests: knitr,
+    rmarkdown
 VignetteBuilder: knitr
