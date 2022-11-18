@@ -13,3 +13,9 @@ Has been omitted.
 
 ## -Information messages to the console
 All information that was originally printed to the console has been deleted. 
+# Third Submission 11/17/2022
+## -Compilation error
+Added knitr and rje to description file.
+
+## -Vignette
+Put vignette files into separate folder.
