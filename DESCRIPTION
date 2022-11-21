@@ -14,8 +14,8 @@ Imports:
     ICSKAT,
     fastGHQuad,
     CompQuadForm,
-    stats,
-    rje
+    stats
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    rje
 VignetteBuilder: knitr
