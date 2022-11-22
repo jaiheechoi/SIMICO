@@ -22,3 +22,6 @@ Put vignette files into separate folder.
 
 # Fourth Submission 11/22/2022
 Changed %\VignetteEngine{knitr::rmarkdown} to %\VignetteEngine{knitr::knitr}
+
+# Fifth Submission 11/22/2022
+Added both knitr and rmarkdown to VignetteBuilder:
