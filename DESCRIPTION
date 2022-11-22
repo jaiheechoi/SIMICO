@@ -18,4 +18,4 @@ Imports:
 Suggests: knitr,
     rmarkdown,
     rje
-VignetteBuilder: knitr
+VignetteBuilder: knitr, rmarkdown
