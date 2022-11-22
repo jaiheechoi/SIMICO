@@ -19,3 +19,6 @@ Added knitr and rje to description file.
 
 ## -Vignette
 Put vignette files into separate folder.
+
+# Fourth Submission 11/22/2022
+Changed %\VignetteEngine{knitr::rmarkdown} to %\VignetteEngine{knitr::knitr}
