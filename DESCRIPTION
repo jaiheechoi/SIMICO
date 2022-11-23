@@ -16,6 +16,5 @@ Imports:
     CompQuadForm,
     stats
 Suggests: knitr,
-    rmarkdown,
-    rje
+    rmarkdown
 VignetteBuilder: knitr, rmarkdown
