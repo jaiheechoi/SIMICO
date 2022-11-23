@@ -25,3 +25,7 @@ Changed %\VignetteEngine{knitr::rmarkdown} to %\VignetteEngine{knitr::knitr}
 
 # Fifth Submission 11/22/2022
 Added both knitr and rmarkdown to VignetteBuilder:
+
+# Sixth Submission 11/23/2022
+Removed package 'rje' from Suggests:
+
