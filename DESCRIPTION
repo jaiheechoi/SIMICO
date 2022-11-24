@@ -11,8 +11,9 @@ Encoding: UTF-8
 RoxygenNote: 7.1.1
 Imports:
     bindata, 
-    ICSKAT,
     fastGHQuad,
     CompQuadForm,
-    stats
-Suggests: knitr
+    stats,
+    ICSKAT
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
