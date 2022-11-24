@@ -29,3 +29,6 @@ Added both knitr and rmarkdown to VignetteBuilder:
 # Sixth Submission 11/23/2022
 Removed package 'rje' from Suggests:
 
+# Seventh Submission 11/24/2022
+Removed Vignette for now. 
+
