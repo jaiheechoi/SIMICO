@@ -34,3 +34,6 @@ Removed Vignette for now.
 
 # Eighth Submission 11/24/2022
 Added Vignette; only called functions from ICSKAT that were needed.
+
+# Ninth Submission 11/24/2022
+Updated package version.

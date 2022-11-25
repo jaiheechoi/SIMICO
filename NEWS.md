@@ -5,3 +5,8 @@
 ### NEWS.md setup
 
 - added NEWS.md creation with newsmd
+
+
+# mypkg 0.2.0
+
+- Added a vignette
