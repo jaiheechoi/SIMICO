@@ -1424,6 +1424,16 @@ simico_out <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d){
   # make sure there are no zeroes
   A_i[which(A_i == 0)]<- min(A_i[which(A_i!= 0)])
 
+    # calculate AIC
+  # first get log-likelihood
+  loglik <- log(sum(A_i))
+  
+  #get number of parameters
+  nParam = (nocol * k) + 1
+  
+  #calculate AIC
+  AIC = (2 * nParam) - (2 * loglik)
+
   # calculate the product of the difference between the survival terms excluding outcome l
   no_l_all <- simplify2array(lapply(1:k, without_one_phen, k = k, store=apply_diffs))
 
@@ -1523,8 +1533,35 @@ simico_out <- function(nullFit, xDats, lt_all, rt_all, Itt, a1, a2, G, k, d){
   B_burden= burden_score / sum(sigmat);
   p_burden= 1 - stats::pchisq(B_burden, df = 1)
 
-
-  return(list(multQ = gamma_score, multP = pval$Qq, burdQ = burden_score, burdP = p_burden))
+  # compute omnibus pvalue
+  #evenly space out rho values
+  prhos <- seq(from = .2, to = .8, by = .2)
+  
+  #create vector to store all p-values
+  omni_pvals <- rep(NA, length(prhos) + 2)
+  
+  # add burden and multiple p-values to vector (rho = 0 and rho = 1)
+  omni_pvals[1] <- pval$Qq
+  omni_pvals[length(omni_pvals)] <- p_burden
+  
+  # vector of 1s
+  J <- matrix(1, nrow = length(U_g))
+  
+  # Loop through all rho to calculate omnibus test statstic at different rho values
+  for(rh in 1:length(prhos)){
+    tempscore <- (1 - prhos[rh]) * gamma_score + prhos[rh] * burden_score
+    half <- chol((1 - prhos[rh]) * diag(length(U_g)) + prhos[rh] * (J %*% t(J)))
+    templam <- eigen(half %*% sigmat %*% t(half))$values
+    omni_pvals[i + 1] <- CompQuadForm::davies(q=tempscore, lambda=templam)$Qq
+  }
+  
+  # sometimes there are NAs
+  omni_pvals <- omni_pvals[-which(is.na(omni_pvals))]
+  
+  # if at least one value, ACAT all the p-values together
+  if(length(omni_pvals) ==0){omniP <- NA} else {omniP <- ACAT(omni_pvals)}
+  
+  return(list(multQ = gamma_score, multP = pval$Qq, burdQ = burden_score, burdP = p_burden, omniP = omniP, AIC = AIC))
 }
 
 
