@@ -1345,7 +1345,7 @@ simico_fit_null <- function(init_beta, epsilon, xDats, lt_all, rt_all, k, d) {
 
 
 ############### get p value
-simico_out <- function(xMat, lt_all, rt_all, a1, a2, G, k, d, numKnots= NULL, checkAIC = FALSE){
+simico_out <- function(xMat, lt_all, rt_all, a1, a2, G, k, d, numKnots= 1, checkAIC = FALSE){
   if(!is.null(numKnots) & checkAIC == TRUE){
     message("Cannot force number of knots and run checkAIC. Please specify a correct option.")
     invokeRestart("abort")
