@@ -1418,7 +1418,7 @@ simico_out <- function(xMat, lt_all, rt_all, a1, a2, G, k, d, numKnots= 1, check
       mdTime[which(event == 0)] <- lt_all[,outc][which(event == 0)]
       
       # fit the kaplan meier estimator
-      kmFit <- survfit(Surv(mdTime, event) ~ 1)
+      kmFit <- survival::survfit(Surv(mdTime, event) ~ 1)
       if(kmFit$surv[1] == 1){
         kmFit$surv[which(kmFit$surv == 1)] <- .999
       }
@@ -1701,7 +1701,7 @@ simico_fit_spline <- function(xMat, lt_all, rt_all, k, d){
         mdTime[which(event == 0)] <- lt_all[,outc][which(event == 0)]
         
         # fit the kaplan meier estimator
-        kmFit <- survfit(Surv(mdTime, event) ~ 1)
+        kmFit <- survival::survfit(Surv(mdTime, event) ~ 1)
         if(kmFit$surv[1] == 1){
           kmFit$surv[which(kmFit$surv == 1)] <- .999
         }
