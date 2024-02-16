@@ -1792,30 +1792,33 @@ simico_fit_spline <- function(xMat, lt_all, rt_all, k, d){
 
 ################################################# F6
 #Sample generation
-simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, xMat, effectSizes) {
+simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, xMat, effectSizes, oppSign = FALSE, nKnots) {
   
-  nocol = p + 3
+  nocol = p + 2 + nKnots
   # number of subjects and outcomes
   # true model has nothing
   fixedMat <- matrix(data=0, nrow=n, ncol=k)
   
   # get genetic effects
+    # get genetic effects
   geneticVec <- c()
-  
+
   # Calculate the effect size
   for (es in 1:length(effectSizes))
   {
     # create vector for each SNP
     Bk <- rep(NA, ncol(gMatCausal))
-    
+
     # loop through all SNPs
     for(j in 1:length(Bk)){
-      
+
       # calculate minor allele frequency
       MAF <- apply(gMatCausal, 2, function(x) mean(x)/2)
-      
+
+      if(oppSign == FALSE){
       # multply effect size and genetic matrix
-      Bk[j] = effectSizes[es]* abs(log10(MAF[j]))
+      Bk[j] = effectSizes[es]* abs(log10(MAF[j]))} else if(oppSign == TRUE) {
+      Bk[j] = effectSizes[es]* abs(log10(MAF[j])) * ((-1)^(j + 1))}
     }
     geneticVec <- c(geneticVec, (gMatCausal %*% Bk))
   }
@@ -1870,23 +1873,23 @@ simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, 
     tposInd[, pheno_it] <- ifelse(leftTimesMat[, pheno_it] == 0, 0, 1)
   }
   
-  leftArray <- array(data=NA, dim=c(n, p + 3, k))
-  
-  rightArray <- array(data=NA, dim=c(n, p + 3, k))
-  
-  
+    leftArray <- array(data=NA, dim=c(n, p + nKnots + 2, k))
+
+  rightArray <- array(data=NA, dim=c(n, p + nKnots + 2, k))
+
+
   for (pheno_it in 1:k) {
-    
+
     tempDmats <- ICSKAT::make_IC_dmat(xMat = xMat, lt = leftTimesMat[, pheno_it],
-                                      
+
                                       rt = rightTimesMat[, pheno_it], obs_ind = obsInd[, pheno_it],
-                                      
-                                      tpos_ind = tposInd[, pheno_it], nKnots=1)
-    
+
+                                      tpos_ind = tposInd[, pheno_it], nKnots=nKnots)
+
     leftArray[, , pheno_it] <- tempDmats$left_dmat
-    
+
     rightArray[, , pheno_it] <- tempDmats$right_dmat
-    
+
   }
   
   #make placeholder to change the data later
