@@ -1792,7 +1792,7 @@ simico_fit_spline <- function(xMat, lt_all, rt_all, k, d){
 
 ################################################# F6
 #Sample generation
-simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, tauSq, gMatCausal, xMat, effectSizes, oppSign = FALSE, nKnots) {
+simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, probMiss = .1, n, p, k, tauSq, gMatCausal, xMat, effectSizes, oppSign = FALSE, nKnots) {
   
   nocol = p + 2 + nKnots
   # number of subjects and outcomes
@@ -1853,14 +1853,30 @@ simico_gen_dat <- function(bhFunInv, obsTimes = 1:3, windowHalf = 0.1, n, p, k, 
   obsInd <- matrix(data=NA, nrow=n, ncol=k)
   tposInd <- matrix(data=NA, nrow=n, ncol=k)
   
-  # do visits separately for each phenotype
+    # do visits separately for each phenotype
   nVisits <- length(obsTimes)
-  
+
   for (pheno_it in 1:k) {
-    
-    # your visit is uniformly distributed around the intended obsTime, windowHalf on each side
-    allVisits <- sweep(matrix(data=runif(n=n*nVisits, min=-windowHalf, max=windowHalf), nrow=n, ncol=nVisits),
-                       MARGIN=2, STATS=obsTimes, FUN="+")
+            # 1 - probMiss is the chance of making it to the visit
+  madeVisit <- matrix(data = stats::rbinom(n=n*nVisits, size=1, prob=(1 - probMiss)), nrow=n, ncol=nVisits)
+
+  # make sure there is at least one visit for each subject
+  nMadeVisits <- apply(madeVisit, 1, sum)
+  zeroVisits <- which(nMadeVisits == 0)
+
+  while (length(zeroVisits) > 0) {
+    madeVisit[zeroVisits, ] <- matrix(data = stats::rbinom(n=length(zeroVisits) * nVisits, size=1,
+                prob=(1 - probMiss)), nrow=length(zeroVisits), ncol=nVisits)
+
+    nMadeVisits <- apply(madeVisit, 1, sum)
+    zeroVisits <- which(nMadeVisits == 0)
+  }
+
+    # actual visit time is uniformly distributed around the intended obsTime, windowHalf on each side
+    visitTime <- sweep(matrix(data = stats::runif(n=n*nVisits, min=-windowHalf, max=windowHalf), nrow=n, ncol=nVisits), MARGIN=2, STATS=obsTimes, FUN="+")
+
+    # get all visits for each subject
+    allVisits <- madeVisit * visitTime
     
     # make the interval for each subject
     allInts <- t(mapply(FUN=ICSKAT::createInt, obsTimes = data.frame(t(allVisits)), eventTime=exactTimesMat[, pheno_it]))
