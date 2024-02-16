@@ -166,13 +166,12 @@ get_A <- function(store, weights, d, n){
 }
 
 # Simulate gmat
-sim_gmat <- function(n,q,rho){
+sim_gMat <- function(n,q,rho, maxMP){
+  
   ## Construct a binary correlation matrix
-  #cmat <- matrix(c(1,rho,rho,1), ncol=2)
   cmat <- toeplitz(c(1, rep(rho, q - 1)))
-  meanparam1 <- runif(q, .01, .05)
-  meanparam2 <- runif(q, .01, .05)
-  x <- bindata::rmvbin(n, margprob = meanparam1, bincorr = cmat)  + bindata::rmvbin(n, margprob = meanparam2, bincorr = cmat)
+  meanparam <- runif(q, .01, maxMP)
+  x <- bindata::rmvbin(n, margprob = meanparam, bincorr = cmat)  + bindata::rmvbin(n, margprob = meanparam, bincorr = cmat)
   
   return(x)
 }
