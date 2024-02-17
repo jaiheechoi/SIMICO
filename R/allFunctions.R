@@ -1350,7 +1350,8 @@ simico_out <- function(xMat, lt_all, rt_all, a1, a2, G, k, d, numKnots= 1, check
     message("Cannot force number of knots and run checkAIC. Please specify a correct option.")
     invokeRestart("abort")
   }
-  
+
+  p = ncol(xMat)
   n = nrow(xMat)
   
   # quadrature weights and roots
