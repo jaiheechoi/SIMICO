@@ -1702,13 +1702,13 @@ simico_fit_spline <- function(xMat, lt_all, rt_all, k, d){
         
         # fit the kaplan meier estimator
         kmFit <- survival::survfit(Surv(mdTime, event) ~ 1)
-        if(kmFit$surv[1] == 1){
+        if(max(kmFit$surv) == 1){
           kmFit$surv[which(kmFit$surv == 1)] <- .999
         }
         
-        # if(min(kmFit$surv) == 0){
-        #   kmFit$surv[which(kmFit$surv == 0)] <- .001
-        # }
+         if(min(kmFit$surv) == 0){
+           kmFit$surv[which(kmFit$surv == 0)] <- .001
+         }
         # 
         # if(max(kmFit$time) == Inf){
         #   kmFit$time[which(kmFit$time == Inf)] <- 100
