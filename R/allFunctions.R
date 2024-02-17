@@ -1422,6 +1422,10 @@ simico_out <- function(xMat, lt_all, rt_all, a1, a2, G, k, d, numKnots= 1, check
       if(kmFit$surv[1] == 1){
         kmFit$surv[which(kmFit$surv == 1)] <- .999
       }
+
+      if(min(kmFit$time) == 0){
+        kmFit$time[which(kmFit$time == 0)] <- .001
+      }
       
       # fit the linear regression
       lmMod <- lm(log(-log(kmFit$surv)) ~ log(kmFit$time))
