@@ -1440,14 +1440,7 @@ simico_out <- function(xMat, lt_all, rt_all, a1, a2, G, k, d, numKnots= 1, check
     init_beta <- c(init_beta, 1)
     
     #fit the null model
-    skip_to_next <- FALSE
-    nullFit <- NA
-    tryCatch(nullFit <- simico_fit_null(init_beta = init_beta, epsilon = 10^-5,
-                           xDats = exampleDat$fullDat$xDats,
-                           lt_all = exampleDat$leftTimesMat, rt_all = exampleDat$rightTimesMat,
-                           k = k, d = 100), error = function(e){skip_to_next <<- TRUE})
-
-    if(skip_to_next){ next}
+    nullFit <- simico_fit_null(init_beta, epsilon = 10^-5, xDats, lt_all, rt_all, k, d)
   }
   
     # get the beta fits, Itt, and design matrices from spline selection
